@@ -27,26 +27,32 @@ class _ListmessageWidgetState extends State<ListmessageWidget> {
         return ListView.separated(
             itemBuilder: (context, index) {
               final data = messsageList[index];
-              return ListTile(
-                title: Text(data.title),
-                subtitle: Text(data.message),
-                trailing: IconButton(
-                    onPressed: () {
-                      deleteMessage(data.id);
+              return
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                  child: ListTile(
+                    title: Text(data.title),
+                    subtitle: Text(data.message),
+                    trailing: IconButton(
+                        onPressed: () {
+                          deleteMessage(data.id);
+                        },
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.redAccent,
+                        )),
+                    onTap: (){
+                      // selectedIteme=data.id;
+                      selectedTitle=data.title;
+                      selectedMessage=data.message;
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>EditingMessagePage(data.id, selectedTitle, selectedMessage)));
+                      // EditingMessagePage(data.id,data.title,data.message)
+                      // updateMessage(MessageModal ,data.id,data.title,data.message);
                     },
-                    icon: Icon(
-                      Icons.delete,
-                      color: Colors.redAccent,
-                    )),
-                onTap: (){
-                  // selectedIteme=data.id;
-                  selectedTitle=data.title;
-                  selectedMessage=data.message;
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>EditingMessagePage(data.id, selectedTitle, selectedMessage)));
-                  // EditingMessagePage(data.id,data.title,data.message)
-                  // updateMessage(MessageModal ,data.id,data.title,data.message);
-                },
-              );
+                  ),
+              ),
+                );
             },
             separatorBuilder: (context, index) {
               return Divider();

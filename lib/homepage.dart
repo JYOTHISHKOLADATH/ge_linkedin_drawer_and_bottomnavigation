@@ -21,12 +21,12 @@ class _HomescreenState extends State<Homescreen> {
     String _username = mailsplit[0].toUpperCase();
     getAllMessages();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        },
-        child: Icon(Icons.message),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //
+      //   },
+      //   child: Icon(Icons.message),
+      // ),
       body: Column(
         children: [
           Padding(

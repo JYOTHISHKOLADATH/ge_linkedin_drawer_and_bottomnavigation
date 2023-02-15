@@ -36,7 +36,7 @@ class _AddMessageState extends State<AddMessage> {
         ),
         ElevatedButton(onPressed: (){
           onSubmitButtonClicked();
-        }, child: Text('Submit'))
+        }, child: Text('Add Message'))
       ],
     );
   }
