@@ -14,14 +14,13 @@ class Splashscreen extends StatefulWidget {
 }
 
 class SplashscreenState extends State<Splashscreen> {
-  static const String KEYLOGIN= "Login";
-  static const String KEYUSERNAME="User_Cred";
+  static const String KEYLOGIN = "Login";
+  static const String KEYUSERNAME = "User_Cred";
   @override
   void initState() {
     super.initState();
 
-
-   whereToGo();
+    whereToGo();
   }
 
   @override
@@ -50,40 +49,34 @@ class SplashscreenState extends State<Splashscreen> {
     );
   }
 
-  void whereToGo() async{
+  void whereToGo() async {
+    var sharedPrefs = await SharedPreferences.getInstance();
+    var userName = sharedPrefs.getString('nameofuser');
 
-    var sharedPrefs= await SharedPreferences.getInstance();
-    var userName=sharedPrefs.getString('nameofuser');
-
-    var sharedpref= await SharedPreferences.getInstance();
-    var loginstatus= sharedpref.getBool(KEYLOGIN);
+    var sharedpref = await SharedPreferences.getInstance();
+    var loginstatus = sharedpref.getBool(KEYLOGIN);
     Timer(Duration(seconds: 5), () {
-      if(loginstatus!=null){
-        if(loginstatus){
+      if (loginstatus != null) {
+        if (loginstatus) {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => Mainpage(useremail: userName! ?? ""),
               ));
-        }else{
+        } else {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => Secondlogin(),
               ));
-
-
         }
-      }else{
+      } else {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => Secondlogin(),
             ));
       }
-
     });
   }
-
-
 }

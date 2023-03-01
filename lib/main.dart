@@ -7,7 +7,9 @@ import 'package:ge_bottomnavbar_drawer/sqlite_service.dart';
 import 'package:provider/provider.dart';
 import 'theme_constants.dart';
 
-Future <void> main() async{
+import 'dart:developer' as dev;
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializingDataBase();
   runApp(const Basepage());

@@ -9,25 +9,32 @@ class Resetpassword extends StatefulWidget {
 }
 
 class _ResetpasswordState extends State<Resetpassword> {
-  final _newpasswordcontroller= TextEditingController();
-  final _renewpasswordcontroller= TextEditingController();
+  final _newpasswordcontroller = TextEditingController();
+  final _renewpasswordcontroller = TextEditingController();
 
-  final SnackBar resetpasswordsnackbar=SnackBar(
+  final SnackBar resetpasswordsnackbar = SnackBar(
     backgroundColor: Colors.red,
     behavior: SnackBarBehavior.floating,
     margin: EdgeInsets.all(10),
-    content: Text("Passsword doesn't match"),duration: Duration(seconds: 3),);
+    content: Text("Passsword doesn't match"),
+    duration: Duration(seconds: 3),
+  );
 
-  final SnackBar resetpasswordcountsnackbar=SnackBar(
+  final SnackBar resetpasswordcountsnackbar = SnackBar(
     backgroundColor: Colors.red,
     behavior: SnackBarBehavior.floating,
     margin: EdgeInsets.all(10),
-    content: Text("Password should contain atleast 7 characters"),duration: Duration(seconds: 3),);
+    content: Text("Password should contain atleast 7 characters"),
+    duration: Duration(seconds: 3),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,backgroundColor:  Color(0xff2F4247),),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xff2F4247),
+      ),
       body: Container(
         color: Color(0xff2F4247),
         // decoration: BoxDecoration(
@@ -38,7 +45,9 @@ class _ResetpasswordState extends State<Resetpassword> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Text(
               'Reset Password',
               style: TextStyle(
@@ -87,7 +96,8 @@ class _ResetpasswordState extends State<Resetpassword> {
                       controller: _newpasswordcontroller,
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintText: 'Enter New Password',hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintText: 'Enter New Password',
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20))),
                     ),
@@ -107,7 +117,8 @@ class _ResetpasswordState extends State<Resetpassword> {
                         controller: _renewpasswordcontroller,
                         obscureText: true,
                         decoration: InputDecoration(
-                          hintText: 'Re-Enter your Password',hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                            hintText: 'Re-Enter your Password',
+                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20))),
                       ))
@@ -128,7 +139,10 @@ class _ResetpasswordState extends State<Resetpassword> {
                   onPressed: () {
                     checkPassword(context);
                   },
-                  child: Text('RESET',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
+                  child: Text(
+                    'RESET',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  )),
             ),
             Spacer()
           ],
@@ -136,19 +150,19 @@ class _ResetpasswordState extends State<Resetpassword> {
       ),
     );
   }
-  void checkPassword(BuildContext){
-    final _newpassword=_newpasswordcontroller.text;
-    final _renewpassword=_renewpasswordcontroller.text;
 
+  void checkPassword(BuildContext) {
+    final _newpassword = _newpasswordcontroller.text;
+    final _renewpassword = _renewpasswordcontroller.text;
 
-    if(_newpassword==_renewpassword&&_renewpassword.length>=7){
+    if (_newpassword == _renewpassword && _renewpassword.length >= 7) {
       print(_renewpassword);
       print(_newpassword);
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => Secondlogin()));
-    }else if(_renewpassword.length<=7){
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Secondlogin()));
+    } else if (_renewpassword.length <= 7) {
       ScaffoldMessenger.of(context).showSnackBar(resetpasswordcountsnackbar);
-    }else{
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(resetpasswordsnackbar);
     }
   }

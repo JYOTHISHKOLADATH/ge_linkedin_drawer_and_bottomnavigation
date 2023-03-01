@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ge_bottomnavbar_drawer/apiservices.dart';
 import 'package:ge_bottomnavbar_drawer/forgot_password_page.dart';
 import 'package:ge_bottomnavbar_drawer/otp_page.dart';
+import 'package:ge_bottomnavbar_drawer/sample_model%20%20class.dart';
 import 'package:ge_bottomnavbar_drawer/screen.dart';
 import 'package:ge_bottomnavbar_drawer/splash_screen_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +15,9 @@ class Secondlogin extends StatefulWidget {
 }
 
 class _SecondloginState extends State<Secondlogin> {
+  bool loginApiRun = false;
   TextEditingController _useremail = new TextEditingController();
+  TextEditingController _userpassword = new TextEditingController();
   bool _isvalidpassowd = false;
   bool _isvalidemail = false;
   bool vis = false;
@@ -22,17 +26,19 @@ class _SecondloginState extends State<Secondlogin> {
   final validationkey = GlobalKey<FormState>();
   String Password = '';
   bool isPasswordvisible = true;
+  late Future<ModalLoginStatus> futurealbum;
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   futurealbum=  ApiServices().validateUser(_useremail.text, _userpassword.text);
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal,
       body: Center(
         child: Container(
-          // decoration: BoxDecoration(
-          //     gradient: LinearGradient(
-          //         begin: Alignment.topCenter,
-          //         end: Alignment.bottomLeft,
-          //         colors: [Color(0xffBD59F3), Color(0xff8AD2F4)])),
           color: Color(0xff2F4247),
           child: Padding(
             padding: const EdgeInsets.all(22.0),
@@ -99,9 +105,9 @@ class _SecondloginState extends State<Secondlogin> {
                                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
                                     .hasMatch(value)) {
                                   setState(() {
-                                    vis = true;
-                                    mailerror = true;
-                                    _isvalidemail = false;
+                                    vis = false;
+                                    mailerror = false;
+                                    _isvalidemail = true;
                                   });
                                   return null;
                                 }
@@ -129,6 +135,7 @@ class _SecondloginState extends State<Secondlogin> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.grey[200]),
                             child: TextFormField(
+                              controller: _userpassword,
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(
@@ -187,10 +194,60 @@ class _SecondloginState extends State<Secondlogin> {
                       sharedPref.setBool(SplashscreenState.KEYLOGIN, true);
                       if (validationkey.currentState!.validate()) {
                         if (_isvalidpassowd && _isvalidemail) {
+
+
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Mainpage(useremail: _useremail.text)));
+                                       MaterialPageRoute(
+                                           builder: (context) =>
+                                               Mainpage(useremail: _useremail.text)));
+                          // validation using API ---start
+
+                          // void didChangeDependencies() {
+                          //   ApiServices().validateUser(_useremail.text, _userpassword.text);
+                          // }
+
+
+
+                      // ---------------------    // ApiCalled here-----------------------------
+                      //    loginApiRun = true;
+                          //     ApiServices().validateUser(
+                      //         _useremail.text, _userpassword.text);
+// ____-------------------------------Finish--------------------------------
+
+
+                          print('jyothish');
+                          //
+                          // FutureBuilder (future:ApiServices().validateUser(_useremail.text, _userpassword.text),
+                          // builder: (context, content){
+                          //    if (content.connectionState == ConnectionState.waiting){
+                          //     return Center(child: CircularProgressIndicator());
+                          //   }else if (content.hasError){
+                          //     return Center(
+                          //       child: Text('Error: ${content.error}'),
+                          //     );
+                          //   }else if(content.hasData){
+                          //     // final List<ModalLoginStatus>? alertmessage=content.data;
+                          //    if(content.data![0].message=="$_useremail is Already Logged In!"){
+                          //      Navigator.of(context).pushReplacement(
+                          //          MaterialPageRoute(
+                          //              builder: (context) =>
+                          //                  Mainpage(useremail: _useremail.text)));
+                          //    }else{
+                          //      showDialog(context: context, builder: (BuildContext context){
+                          //        return AlertDialog(content: Text('${content.data![0].message}'),);
+                          //      });
+                          //        // AlertDialog(content: Text('${content.data![0].message}'),);
+                          //    }
+                          //   }
+                          //    return Container();
+                          // },);
+
+                          // validation using API ---end
+
+                          // Navigator.of(context).pushReplacement(
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             Mainpage(useremail: _useremail.text)));
                         }
                       }
                     },
@@ -208,6 +265,43 @@ class _SecondloginState extends State<Secondlogin> {
                         foregroundColor: Colors.white),
                   ),
                 ),
+    //             FutureBuilder<ModalLoginStatus>(
+    //                 future: ApiServices()
+    //                     .validateUser(_useremail.text, _userpassword.text),
+    //                 builder: (context, content) {
+    //                   if (loginApiRun) {
+    //                     if (content.hasData) {
+    //                       print("hello world");
+    //                       if (content.data!.message ==
+    //                           "$_useremail is Already Logged In!") {
+    //                         Navigator.of(context).pushReplacement(
+    //                             MaterialPageRoute(
+    //                                 builder: (context) =>
+    //                                     Mainpage(useremail: _useremail.text)));
+    //                       } else {
+    // showDialog(context: context, builder: (BuildContext context){
+    //        return AlertDialog(content: Text('${content.data!.message}'),actions: [
+    //          TextButton(onPressed: (){
+    //            Navigator.of(context).pushReplacement(
+    //                MaterialPageRoute(
+    //                    builder: (context) =>
+    //                        Mainpage(useremail: _useremail.text)));
+    //          }, child: Text("ok"))
+    //        ],);});
+    //                       }
+    //                     } else if (content.hasError) {
+    //                       print(content.error);
+    //                     } else if (content.connectionState ==
+    //                         ConnectionState.waiting) {
+    //                       return CircularProgressIndicator();
+    //                     }
+    //                     return SizedBox();
+    //                     loginApiRun = false;
+    //                   } else {
+    //                     return SizedBox();
+    //                     loginApiRun = false;
+    //                   }
+    //                 }),
                 SizedBox(
                   height: 20,
                 ),
@@ -238,7 +332,6 @@ class _SecondloginState extends State<Secondlogin> {
 
   Future<void> saveLogincrd() async {
     final userID = await SharedPreferences.getInstance();
-
     await userID.setString('nameofuser', _useremail.text);
   }
 }

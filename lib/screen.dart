@@ -1,6 +1,10 @@
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:ge_bottomnavbar_drawer/active_schedules_page.dart';
+import 'package:ge_bottomnavbar_drawer/api_demopage.dart';
 import 'package:ge_bottomnavbar_drawer/drawer.dart';
+import 'package:ge_bottomnavbar_drawer/post_methord.dart';
+import 'package:ge_bottomnavbar_drawer/second_apiDesignl.dart';
 import 'theme_constants.dart';
 import 'main.dart';
 
@@ -45,6 +49,9 @@ class _MainpageState extends State<Mainpage> {
     ];
 
     return Scaffold(
+      // floatingActionButton: FloatingActionButton.extended(onPressed: (){
+      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>ActiveSchedulesPage()));
+      // },label: Text('Api test'),),
         key: ScaffoldKey,
         appBar: AppBar(
           backgroundColor: Theme.of(context).backgroundColor,
@@ -100,70 +107,58 @@ class _MainpageState extends State<Mainpage> {
                 },
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.all(8.0),
-            //   child: Icon(Icons.chat_sharp, size: 30,),
-            // ),
-            // Switch(
-            //     value: _themeManager.themeMode == ThemeMode.dark,
-            //     onChanged: (newValue) {
-            //      setState(() {
-            //        _themeManager.toggleTheme(newValue);
-            //        // print(newValue);
-            //
-            //      });
-            //
-            //     })
+
           ],
         ),
-        body: screens[currentIndex],
-        bottomNavigationBar: CustomLineIndicatorBottomNavbar(
-            unSelectedColor: Theme.of(context).unselectedWidgetColor,
-            selectedColor: Theme.of(context).primaryColor,
-            backgroundColor: Theme.of(context).bottomAppBarColor,
-            // type: BottomNavigationBarType.fixed,
-            currentIndex: currentIndex,
-            // unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-            // selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-            onTap: (index) {
-              setState(() {
-                currentIndex = index;
-                if (currentIndex == 2) {
-                  isvisible = true;
-                } else {
-                  isvisible = false;
-                }
-              });
-            },
-            enableLineIndicator: true,
-            lineIndicatorWidth: 3,
-            indicatorType: IndicatorType.Top,
-            selectedFontSize: 18,
-            unselectedFontSize: 18,
-            unselectedIconSize: 35,
-            selectedIconSize: 35,
-            customBottomBarItems: [
-              CustomBottomBarItems(
-                icon: Icons.home,
-                label: 'Home',
-              ),
-              // CustomBottomBarItems(
-              //   icon: Icons.people_sharp,
-              //   label: 'My Network',
-              // ),
-              CustomBottomBarItems(
-                icon: Icons.qr_code_scanner_outlined,
-                label: 'Scan',
-              ),
-              // CustomBottomBarItems(
-              //   icon: Icons.notifications_sharp,
-              //   label: 'Notification',
-              // ),
-              CustomBottomBarItems(
-                icon: Icons.support_agent,
-                label: 'Help',
-              ),
-            ]),
+        body:
+        screens[currentIndex],
+        // bottomNavigationBar: CustomLineIndicatorBottomNavbar(
+        //     unSelectedColor: Theme.of(context).unselectedWidgetColor,
+        //     selectedColor: Theme.of(context).primaryColor,
+        //     backgroundColor: Theme.of(context).bottomAppBarColor,
+        //     // type: BottomNavigationBarType.fixed,
+        //     currentIndex: currentIndex,
+        //     // unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        //     // selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        //     onTap: (index) {
+        //       setState(() {
+        //         currentIndex = index;
+        //         if (currentIndex == 2) {
+        //           isvisible = true;
+        //         } else {
+        //           isvisible = false;
+        //         }
+        //       });
+        //     },
+        //     enableLineIndicator: true,
+        //     lineIndicatorWidth: 3,
+        //     indicatorType: IndicatorType.Top,
+        //     selectedFontSize: 18,
+        //     unselectedFontSize: 18,
+        //     unselectedIconSize: 35,
+        //     selectedIconSize: 35,
+        //     customBottomBarItems: [
+        //       CustomBottomBarItems(
+        //         icon: Icons.home,
+        //         label: 'Home',
+        //       ),
+        //       // CustomBottomBarItems(
+        //       //   icon: Icons.people_sharp,
+        //       //   label: 'My Network',
+        //       // ),
+        //       CustomBottomBarItems(
+        //         icon: Icons.qr_code_scanner_outlined,
+        //         label: 'Scan',
+        //       ),
+        //       // CustomBottomBarItems(
+        //       //   icon: Icons.notifications_sharp,
+        //       //   label: 'Notification',
+        //       // ),
+        //       CustomBottomBarItems(
+        //         icon: Icons.support_agent,
+        //         label: 'Help',
+        //       ),
+        //     ]),
         drawer: Drawerpage(drawerUserName: widget.useremail));
   }
 }

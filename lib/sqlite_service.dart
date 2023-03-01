@@ -15,7 +15,8 @@ Future<void> initializingDataBase() async {
 }
 
 Future<void> addMessage(MessageModal value) async {
-  await _db.rawQuery('INSERT INTO messages (title,message) VALUES (?,?)', [value.title, value.message]);
+  await _db.rawQuery('INSERT INTO messages (title,message) VALUES (?,?)',
+      [value.title, value.message]);
   getAllMessages();
   // messageListNotifier.value.add(value);
   // messageListNotifier.notifyListeners();
@@ -33,23 +34,23 @@ Future<void> getAllMessages() async {
 }
 
 Future<void> deleteMessage(int id) async {
-  await _db.rawDelete('DELETE FROM messages WHERE id=$id',['id']);
+  await _db.rawDelete('DELETE FROM messages WHERE id=$id');
   messageListNotifier.notifyListeners();
   getAllMessages();
 }
 
-Future<void> updateMessage(int? id,String title ,String message)async{
-
-  await _db.rawUpdate(
-      'UPDATE messages SET title = ?, message = ? WHERE id = $id',
-      ['$title', '$message',]);
+Future<void> updateMessage(int? id, String title, String message) async {
+  await _db
+      .rawUpdate('UPDATE messages SET title = ?, message = ? WHERE id = $id', [
+    '$title',
+    '$message',
+  ]);
   getAllMessages();
   // await _db.update(message,messageModal.toMap(), where: '$id',whereArgs: ['$id']);
 
   // await _db.rawUpdate(
   //     'UPDATE messages SET name = $title, value = $message WHERE name = $id',
   //     ['updated name', '9876', 'some name']);
-
 }
 
 // import 'package:sqflite/sqflite.dart';

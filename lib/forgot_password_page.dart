@@ -24,12 +24,6 @@ class _ForgotpasswordState extends State<Forgotpassword> {
       ),
       body: Container(
         color: Color(0xff2F4247),
-        // width: double.maxFinite,
-        // decoration: BoxDecoration(
-        //     gradient: LinearGradient(
-        //         begin: Alignment.topCenter,
-        //         end: Alignment.bottomLeft,
-        //         colors: [Color(0xffBD59F3), Color(0xff8AD2F4)])),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -64,11 +58,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
               SizedBox(
                 height: 30,
               ),
-              // Align(alignment: Alignment.centerLeft
-              // ,child: Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Text('Email',style: TextStyle(fontSize: 20,color: Colors.indigo,fontWeight: FontWeight.bold),),
-              // )),
+
               Form(
                   key: formkey,
                   child: Column(

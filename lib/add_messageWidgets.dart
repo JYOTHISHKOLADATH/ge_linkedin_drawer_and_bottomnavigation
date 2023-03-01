@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/modelMessage.dart';
 import 'package:ge_bottomnavbar_drawer/sqlite_service.dart';
+
 class AddMessage extends StatefulWidget {
   const AddMessage({Key? key}) : super(key: key);
 
@@ -21,8 +22,9 @@ class _AddMessageState extends State<AddMessage> {
           child: TextFormField(
             controller: _textFieldController1,
             decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)),label: Text('Title')),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                label: Text('Title')),
           ),
         ),
         Padding(
@@ -30,27 +32,32 @@ class _AddMessageState extends State<AddMessage> {
           child: TextFormField(
             controller: _textFieldController2,
             decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)),label: Text('Message')),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                label: Text('Message')),
           ),
         ),
-        ElevatedButton(onPressed: (){
-          onSubmitButtonClicked();
-        }, child: Text('Add Message'))
+        ElevatedButton(
+            onPressed: () {
+              onSubmitButtonClicked();
+            },
+            child: Text('Add Message'))
       ],
     );
   }
 
-  Future<void>onSubmitButtonClicked()async{
-    final _title=_textFieldController1.text.trim();
-    final _message=_textFieldController2.text.trim();
-    if(_title.isEmpty||_message.isEmpty){
+  Future<void> onSubmitButtonClicked() async {
+    final _title = _textFieldController1.text.trim();
+    final _message = _textFieldController2.text.trim();
+    if (_title.isEmpty || _message.isEmpty) {
       return;
     }
     print('$_title,$_message');
     final _messageEntered = MessageModal(title: _title, message: _message);
     addMessage(_messageEntered);
+    _textFieldController1.clear();
+    _textFieldController2.clear();
   }
-  void editing(int id,String title,String message){
-  }
+
+  // void editing(int id, String title, String message) {}
 }
