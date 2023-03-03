@@ -20,6 +20,8 @@ class Drawerpage extends StatefulWidget {
 class _DrawerpageState extends State<Drawerpage> {
   @override
   Widget build(BuildContext context) {
+    bool location=false;
+    String locationName = "Dubai";
     ThemeChanger _themechanger = Provider.of<ThemeChanger>(context);
     String _resivedid = widget.drawerUserName;
     var userName = _resivedid.split('@');
@@ -145,6 +147,29 @@ class _DrawerpageState extends State<Drawerpage> {
                 // Divider(
                 //   color: Colors.grey,
                 // ),
+                ListTile(
+                  leading: Icon(
+                    Icons.location_on_outlined,
+                  ),
+                  title: Text(locationName, style: TextStyle()),
+                  onTap: () {
+                      if(location){
+                        location = false;
+                         locationName="Abhudabi";
+                       print(locationName);
+                        print(location);
+                      }else{
+                        location = true;
+                         locationName="Dubai";
+                        print(locationName);
+                        print(location);
+                      }
+
+                  },
+                ),
+                Divider(
+                  color: Colors.grey,
+                ),
                 ListTile(
                   leading: Icon(
                     Icons.logout,

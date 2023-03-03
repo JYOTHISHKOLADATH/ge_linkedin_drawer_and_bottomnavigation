@@ -17,9 +17,9 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
-    List iconOfFunction=["image/trolley (1).png","image/sync.png","image/settings.png"];
-    List nameOfFunction=['ACTIVE \n SCHEDULES','SYNC','SETTINGS'];
-    List navigationPages=[ActiveSchedulesPage(),FreePage(),FreePage()];
+    List iconOfFunction=["image/trolley (1).png","image/sync.png","image/settings.png","image/pallete.png"];
+    List nameOfFunction=['ACTIVE \n SCHEDULES','SYNC','SETTINGS','VIEW DETAILS'];
+    List navigationPages=[ActiveSchedulesPage(),FreePage(),FreePage(),FreePage()];
     String enteredMail = widget.name;
     var mailsplit = enteredMail.split('@');
     String _username = mailsplit[0].toUpperCase();

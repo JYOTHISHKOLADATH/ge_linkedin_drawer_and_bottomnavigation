@@ -28,7 +28,7 @@ ThemeData lightTheme = ThemeData(
     bottomAppBarColor: Color(0xFFFFC50A),
     // appBarTheme: AppBarTheme(backgroundColor: Colors.green),
     unselectedWidgetColor: Color(0xFFF8F9F9),
-    backgroundColor: Color(0xFFFFC50A));
+    backgroundColor: Colors.teal);
 
 ThemeData darkTheme = ThemeData(
     // primarySwatch:Colors.red,

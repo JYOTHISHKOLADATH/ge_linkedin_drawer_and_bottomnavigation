@@ -29,73 +29,105 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
             'SELECT SCHEDULES',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           ListView.builder(
               shrinkWrap: true,
               // physics: NeverScrollableScrollPhysics(),
               itemCount: stockSchedule.length,
               itemBuilder: (BuildContext context, int index) {
-                return
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0,right: 8),
-                    child: Card(
-                      color: Color(0xffDEBE95),
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                  child: Card(
+                    elevation: 4,
+                    // color: Color(0xffDEBE95),
                     child: ListTile(
                       title: Text(
-                        stockSchedule[index],textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        stockSchedule[index],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ViewSchedule()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewSchedule()));
                       },
                     ),
-                ),
-                  );
-              }),
-          Spacer(),
-          // Divider(height: 10,color: Colors.black,),
-          Container(
-            decoration: BoxDecoration(color: Colors.amber,borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)), boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 10.0, // soften the shadow
-                spreadRadius: 5.0, //extend the shadow
-                offset: Offset(
-                  5.0, // Move to right 5  horizontally
-                  -5.0, // Move to bottom 5 Vertically
-                ),
-              )
-            ],),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Column(
-                      children: [
-                        Icon(Icons.home,size: 35,color: Color(0xffFD0909),),
-                        Text("HOME",style: TextStyle(fontWeight: FontWeight.bold),)
-                      ],
-                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: InkWell(
-                      child: Column(
-                        children: [
-                          Icon(Icons.close,size: 35,color:  Color(0xffFD0909)),
-                          Text("CLOSE",style: TextStyle(fontWeight: FontWeight.bold),)
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 20,child: Container(color: Colors.amber,),)
+                );
+              }),
+          // Spacer(),
+          // Divider(height: 10,color: Colors.black,),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     color: Colors.teal,
+          //     borderRadius: BorderRadius.only(
+          //         topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          //     boxShadow: [
+          //       BoxShadow(
+          //         color: Colors.grey,
+          //         blurRadius: 10.0, // soften the shadow
+          //         spreadRadius: 5.0, //extend the shadow
+          //         offset: Offset(
+          //           5.0, // Move to right 5  horizontally
+          //           -5.0, // Move to bottom 5 Vertically
+          //         ),
+          //       )
+          //     ],
+          //   ),
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Padding(
+          //           padding: const EdgeInsets.only(left: 8.0),
+          //           child: Column(
+          //             children: [
+          //               Icon(
+          //                 Icons.home,
+          //                 size: 35,
+          //                 color: Color(0xffC3DAD7),
+          //               ),
+          //               Text(
+          //                 "HOME",
+          //                 style: TextStyle(
+          //                   fontWeight: FontWeight.bold,
+          //                   color: Color(0xffC3DAD7),
+          //                 ),
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //         Padding(
+          //           padding: const EdgeInsets.only(right: 8.0),
+          //           child: InkWell(
+          //             child: Column(
+          //               children: [
+          //                 Icon(
+          //                   Icons.close,
+          //                   size: 35,
+          //                   color: Color(0xffC3DAD7),
+          //                 ),
+          //                 Text(
+          //                   "CLOSE",
+          //                   style: TextStyle(
+          //                     fontWeight: FontWeight.bold,
+          //                     color: Color(0xffC3DAD7),
+          //                   ),
+          //                 )
+          //               ],
+          //             ),
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 20,child: Container(color: Colors.teal,),)
         ],
       ),
     );

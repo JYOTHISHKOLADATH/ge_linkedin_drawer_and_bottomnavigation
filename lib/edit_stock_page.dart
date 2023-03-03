@@ -21,169 +21,169 @@ class _EditStockState extends State<EditStock> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    color: Color(0xffAAE3E0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                child: Text(
-                                  'Item Code',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(
-                                  ':',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none
-                                    ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+            child: Card(
+              color: Colors.white70,
+              elevation: 4,
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      // color: Color(0xffAAE3E0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: Text(
+                                    'Item Code',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    ':',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
                                     textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.text,)
-                                // child: Text(
-                                //   '-----',
-                                //   style: TextStyle(
-                                //       fontWeight: FontWeight.bold,
-                                //       fontSize: 18),
-                                //   textAlign: TextAlign.center,
-                                // ),
-                              )),
-                        ],
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none
+                                      ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.text,)
+                                  // child: Text(
+                                  //   '-----',
+                                  //   style: TextStyle(
+                                  //       fontWeight: FontWeight.bold,
+                                  //       fontSize: 18),
+                                  //   textAlign: TextAlign.center,
+                                  // ),
+                                )),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    color: Color(0xffF5BB98),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                child: Text(
-                                  'Item Name',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(
-                                  ':',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none
-                                    ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      // color: Color(0xffF5BB98),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: Text(
+                                    'Item Name',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    ':',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
                                     textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.text,)
-                                // child: Text(
-                                //   '-------',
-                                //   style: TextStyle(
-                                //       fontWeight: FontWeight.bold,
-                                //       fontSize: 18),
-                                //   textAlign: TextAlign.center,
-                                // ),
-                              )),
-                        ],
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none
+                                      ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.text,)
+                                  // child: Text(
+                                  //   '-------',
+                                  //   style: TextStyle(
+                                  //       fontWeight: FontWeight.bold,
+                                  //       fontSize: 18),
+                                  //   textAlign: TextAlign.center,
+                                  // ),
+                                )),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    color: Color(0xffAAE3E0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                child: Text(
-                                  'Quantity',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(
-                                  ':',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )),
-                          Expanded(
-                              flex: 3,
-                              child: Container(
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none
-                                    ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      // color: Color(0xffAAE3E0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: Text(
+                                    'Quantity',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    ':',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
                                     textAlign: TextAlign.center,
-                                    keyboardType: TextInputType.number,)
-                                // child: Text(
-                                //   '------',
-                                //   style: TextStyle(
-                                //       fontWeight: FontWeight.bold,
-                                //       fontSize: 18),
-                                //   textAlign: TextAlign.center,
-                                // ),
-                              )),
-                        ],
+                                  ),
+                                )),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none
+                                      ),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,)
+                                )),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10,),
+                    ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
+                        ),
+                        onPressed: () {},
+                        child: Text('Save')),
+                    SizedBox(height: 10,),
+                  ],
+                ),
               ),
             ),
           ),
-          ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-              ),
-              onPressed: () {},
-              child: Text('Save')),
+
           // Padding(
           //   padding: const EdgeInsets.all(8.0),
           //   child: Container(
@@ -219,7 +219,7 @@ class _EditStockState extends State<EditStock> {
           // Divider(height: 10,color: Colors.black,),
           Container(
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: Colors.teal,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               boxShadow: [
@@ -253,11 +253,11 @@ class _EditStockState extends State<EditStock> {
                           Icon(
                             Icons.home,
                             size: 35,
-                            color: Color(0xffFD0909),
+                            color: Color(0xffC3DAD7),
                           ),
                           Text(
                             "HOME",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffC3DAD7),),
                           )
                         ],
                       ),
@@ -277,11 +277,11 @@ class _EditStockState extends State<EditStock> {
                           Icon(
                             Icons.close,
                             size: 35,
-                            color: Color(0xffFD0909),
+                            color: Color(0xffC3DAD7),
                           ),
                           Text(
                             "CLOSE",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffC3DAD7),),
                           )
                         ],
                       ),
@@ -291,12 +291,12 @@ class _EditStockState extends State<EditStock> {
               ),
             ),
           ),
-          SizedBox(
-            height: 22,
-            child: Container(
-              color: Colors.amber,
-            ),
-          )
+          // SizedBox(
+          //   height: 22,
+          //   child: Container(
+          //     color: Colors.amber,
+          //   ),
+          // )
         ],
       ),
     );
