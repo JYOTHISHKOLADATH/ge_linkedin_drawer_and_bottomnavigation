@@ -3,6 +3,7 @@ import 'package:ge_bottomnavbar_drawer/add_messageWidgets.dart';
 import 'package:ge_bottomnavbar_drawer/free_navigate_page.dart';
 import 'package:ge_bottomnavbar_drawer/home_bottomsheet.dart';
 import 'package:ge_bottomnavbar_drawer/listmessage.dart';
+import 'package:ge_bottomnavbar_drawer/sqfliteStockCount_services.dart';
 import 'package:ge_bottomnavbar_drawer/sqlite_service.dart';
 import 'active_schedules_page.dart';
 
@@ -23,7 +24,7 @@ class _HomescreenState extends State<Homescreen> {
     String enteredMail = widget.name;
     var mailsplit = enteredMail.split('@');
     String _username = mailsplit[0].toUpperCase();
-    getAllMessages();
+    // getAllItems();
     return Scaffold(
 
      body: Padding(
