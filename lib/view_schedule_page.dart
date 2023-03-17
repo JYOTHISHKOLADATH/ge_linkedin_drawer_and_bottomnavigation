@@ -2,8 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/active_schedules_page.dart';
 import 'package:ge_bottomnavbar_drawer/normalmode_screen.dart';
 import 'package:ge_bottomnavbar_drawer/quickmode_screen.dart';
+import 'package:ge_bottomnavbar_drawer/sorting_listPage.dart';
 class ViewSchedule extends StatefulWidget {
-  const ViewSchedule({Key? key}) : super(key: key);
+
+  ViewSchedule(
+      this.schedule_id,
+      this.schedulename,
+      this.startdate,
+      this.enddate,
+      this.countingstatus,
+      this.role_id,
+      this.branch_id,
+      this.cmp_id,
+      this.created_at,
+      this.created_by,
+      this.modified_at,
+      this.modified_by,
+      this.status,
+      this.cmp_name,
+      this.branch_name);
+
+  int schedule_id;
+  String schedulename;
+  String startdate;
+  String enddate;
+  int countingstatus;
+  int role_id;
+  int branch_id;
+  int cmp_id;
+  String created_at;
+  int created_by;
+  String modified_at;
+  int modified_by;
+  int status;
+  String cmp_name;
+  String branch_name;
+
 
   @override
   State<ViewSchedule> createState() => _ViewScheduleState();
@@ -13,6 +47,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
   @override
   Widget build(BuildContext context) {
     bool modeButton=true;
+    TextEditingController shelfId= TextEditingController();
     return  Scaffold(
       appBar: AppBar(backgroundColor: Theme.of(context).backgroundColor,
         iconTheme: Theme.of(context).iconTheme,
@@ -28,7 +63,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                 child: Column(
                   children: [
                     SizedBox(height: 10,),
-                    Text('GE STOCK COUNT JAN 2023',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                    Text(widget.schedulename,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                     SizedBox(height: 10,),
                     Container(
                       // color: Color(0xffF5BB98),
@@ -44,7 +79,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                 child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                             Expanded(
                                 flex: 3,
-                                child: Container(child: Text('01 Jan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                child: Container(child: Text(widget.startdate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                           ],
                         ),
                       ),
@@ -64,7 +99,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                 child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                             Expanded(
                                 flex: 3,
-                                child: Container(child: Text('15 Jan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                child: Container(child: Text(widget.enddate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                           ],
                         ),
                       ),
@@ -83,7 +118,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                 child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                             Expanded(
                                 flex: 3,
-                                child: Container(child: Text('Dubai',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                child: Container(child: Text(widget.branch_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                           ],
                         ),
                       ),
@@ -102,7 +137,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                 child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
                             Expanded(
                                 flex: 3,
-                                child: Container(child: Text('Active',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                child: Container(child:widget.status==1 ? Text('Active',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,) : Text("Inactive"),)),
                           ],
                         ),
                       ),
@@ -136,7 +171,34 @@ class _ViewScheduleState extends State<ViewSchedule> {
           //       )
           //     ],
           //   ),
-          // ),
+          // )
+          ,Spacer(),
+          TextField(controller: shelfId,),
+    ElevatedButton(
+    style: ButtonStyle(
+    backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
+    ),
+    onPressed: (){
+      if(shelfId.text!=""){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SortinList(shelfId.text)));
+      }else{
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Enter a valid Shelf ID'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            });
+      }
+    }, child: Text('add shelf'))
           ,Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

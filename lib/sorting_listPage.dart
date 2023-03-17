@@ -4,10 +4,12 @@ import 'package:ge_bottomnavbar_drawer/model_StockCount.dart';
 import 'package:ge_bottomnavbar_drawer/sqfliteStockCount_services.dart';
 
 class SortinList extends StatefulWidget {
-  const SortinList({Key? key}) : super(key: key);
 
+  String shelfId;
   @override
   State<SortinList> createState() => _SortinListState();
+
+  SortinList(this.shelfId);
 }
 
 class _SortinListState extends State<SortinList> {
@@ -15,7 +17,7 @@ class _SortinListState extends State<SortinList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getAllItems();
+    getAllItems(widget.shelfId);
   }
 
   int i = 0;
@@ -56,7 +58,7 @@ class _SortinListState extends State<SortinList> {
         return;
       }
       print('$_itemName');
-      final _addedItem = ModelStockCount(itemName: _itemName, itemCount: count);
+      final _addedItem = ModelStockCount(itemName: _itemName, itemCount: count, shelfId: widget.shelfId);
       addItem(_addedItem);
     }
 
@@ -79,16 +81,16 @@ class _SortinListState extends State<SortinList> {
                 if(_enteredItem.text==""){
                   return;
                 }else{
-                  final oldStock = await stockExists(_enteredItem.text);
+                  final oldStock = await stockExists(_enteredItem.text,widget.shelfId);
                   print("$oldStock these is oldstocK");
                   if (oldStock == 0) {
                     final stockStatus = ModelStockCount(
                         timeStamp: now.toString(),
-                        itemName: _enteredItem.text, itemCount: 1);
+                        itemName: _enteredItem.text, itemCount: 1,shelfId: widget.shelfId);
                     addItem(stockStatus);
                   } else {
-                    final cv = await getItemCount(_enteredItem.text);
-                    updateScannedItem(_enteredItem.text, cv,now.toString());
+                    final cv = await getItemCount(_enteredItem.text,widget.shelfId);
+                    updateScannedItem(_enteredItem.text, cv,now.toString(),widget.shelfId);
                     print("$cv ");
                   }
                   // checkingQuantity();

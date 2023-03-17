@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/apiservices.dart';
 import 'package:ge_bottomnavbar_drawer/forgot_password_page.dart';
+import 'package:ge_bottomnavbar_drawer/new_api_model.dart';
+import 'package:ge_bottomnavbar_drawer/newapiservices.dart';
 import 'package:ge_bottomnavbar_drawer/otp_page.dart';
-import 'package:ge_bottomnavbar_drawer/sample_model%20%20class.dart';
 import 'package:ge_bottomnavbar_drawer/screen.dart';
 import 'package:ge_bottomnavbar_drawer/splash_screen_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'loginapimodel.dart';
 
 class Secondlogin extends StatefulWidget {
   const Secondlogin({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class Secondlogin extends StatefulWidget {
 }
 
 class _SecondloginState extends State<Secondlogin> {
+  bool futureVisible=false;
   bool loginApiRun = false;
   TextEditingController _useremail = new TextEditingController();
   TextEditingController _userpassword = new TextEditingController();
@@ -26,13 +30,14 @@ class _SecondloginState extends State<Secondlogin> {
   final validationkey = GlobalKey<FormState>();
   String Password = '';
   bool isPasswordvisible = true;
-  late Future<ModalLoginStatus> futurealbum;
+  // List<ApiModel> listMessage=[];
+  UserApiServices client= UserApiServices();
+
+
+  // late Future<ModalLoginStatus> futurealbum;
+  // late  Future<ApiModel> albamfuture ;
+  // =UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
   // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   futurealbum=  ApiServices().validateUser(_useremail.text, _userpassword.text);
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,7 +161,7 @@ class _SecondloginState extends State<Secondlogin> {
                               validator: (value) {
                                 if (value == null ||
                                     value.isEmpty ||
-                                    value.length <= 7) {
+                                    value.length <= 2) {
                                   setState(() {
                                     _isvalidpassowd = false;
                                     passerror = true;
@@ -189,65 +194,17 @@ class _SecondloginState extends State<Secondlogin> {
                   child: ElevatedButton(
                     onPressed: () async {
                       // if successfully logged in
-                      saveLogincrd();
-                      var sharedPref = await SharedPreferences.getInstance();
-                      sharedPref.setBool(SplashscreenState.KEYLOGIN, true);
                       if (validationkey.currentState!.validate()) {
                         if (_isvalidpassowd && _isvalidemail) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Mainpage(useremail: _useremail.text),
+                              ));
+                // var   data =       UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
+              // someFunction();
+              // print(apiModel);
 
-
-                          Navigator.of(context).pushReplacement(
-                                       MaterialPageRoute(
-                                           builder: (context) =>
-                                               Mainpage(useremail: _useremail.text)));
-                          // validation using API ---start
-
-                          // void didChangeDependencies() {
-                          //   ApiServices().validateUser(_useremail.text, _userpassword.text);
-                          // }
-
-
-
-                      // ---------------------    // ApiCalled here-----------------------------
-                      //    loginApiRun = true;
-                          //     ApiServices().validateUser(
-                      //         _useremail.text, _userpassword.text);
-// ____-------------------------------Finish--------------------------------
-
-
-                          print('jyothish');
-                          //
-                          // FutureBuilder (future:ApiServices().validateUser(_useremail.text, _userpassword.text),
-                          // builder: (context, content){
-                          //    if (content.connectionState == ConnectionState.waiting){
-                          //     return Center(child: CircularProgressIndicator());
-                          //   }else if (content.hasError){
-                          //     return Center(
-                          //       child: Text('Error: ${content.error}'),
-                          //     );
-                          //   }else if(content.hasData){
-                          //     // final List<ModalLoginStatus>? alertmessage=content.data;
-                          //    if(content.data![0].message=="$_useremail is Already Logged In!"){
-                          //      Navigator.of(context).pushReplacement(
-                          //          MaterialPageRoute(
-                          //              builder: (context) =>
-                          //                  Mainpage(useremail: _useremail.text)));
-                          //    }else{
-                          //      showDialog(context: context, builder: (BuildContext context){
-                          //        return AlertDialog(content: Text('${content.data![0].message}'),);
-                          //      });
-                          //        // AlertDialog(content: Text('${content.data![0].message}'),);
-                          //    }
-                          //   }
-                          //    return Container();
-                          // },);
-
-                          // validation using API ---end
-
-                          // Navigator.of(context).pushReplacement(
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             Mainpage(useremail: _useremail.text)));
                         }
                       }
                     },
@@ -265,43 +222,46 @@ class _SecondloginState extends State<Secondlogin> {
                         foregroundColor: Colors.white),
                   ),
                 ),
-    //             FutureBuilder<ModalLoginStatus>(
-    //                 future: ApiServices()
-    //                     .validateUser(_useremail.text, _userpassword.text),
-    //                 builder: (context, content) {
-    //                   if (loginApiRun) {
-    //                     if (content.hasData) {
-    //                       print("hello world");
-    //                       if (content.data!.message ==
-    //                           "$_useremail is Already Logged In!") {
-    //                         Navigator.of(context).pushReplacement(
-    //                             MaterialPageRoute(
-    //                                 builder: (context) =>
-    //                                     Mainpage(useremail: _useremail.text)));
-    //                       } else {
-    // showDialog(context: context, builder: (BuildContext context){
-    //        return AlertDialog(content: Text('${content.data!.message}'),actions: [
-    //          TextButton(onPressed: (){
-    //            Navigator.of(context).pushReplacement(
-    //                MaterialPageRoute(
-    //                    builder: (context) =>
-    //                        Mainpage(useremail: _useremail.text)));
-    //          }, child: Text("ok"))
-    //        ],);});
-    //                       }
-    //                     } else if (content.hasError) {
-    //                       print(content.error);
-    //                     } else if (content.connectionState ==
-    //                         ConnectionState.waiting) {
-    //                       return CircularProgressIndicator();
-    //                     }
-    //                     return SizedBox();
-    //                     loginApiRun = false;
-    //                   } else {
-    //                     return SizedBox();
-    //                     loginApiRun = false;
-    //                   }
-    //                 }),
+                // Visibility(
+                //   visible: futureVisible,
+                //   child: FutureBuilder<ApiModel>(
+                //     future: albamfuture,
+                //       builder: (context,snapshot){
+                //     if(snapshot.hasData){
+                //       print(snapshot.data!.message);
+                //       // return Text(snapshot.data!.message.toString());
+                //        if(snapshot.data!.message=="${_useremail.text} is Already Logged In!"){
+                //          // Navigator.push(
+                //          //     context,
+                //          //     MaterialPageRoute(
+                //          //       builder: (context) => Forgotpassword(),
+                //          //     ));
+                //          return AlertDialog(
+                //            title: Text('User Already loged in!!'),
+                //            actions: <Widget>[
+                //              TextButton(
+                //                child: Text('Ok'),
+                //                onPressed: () {
+                //                  Navigator.of(context).pop();
+                //                },
+                //              ),
+                //            ],
+                //          );
+                //        }else{
+                //          // print("${_useremail.text} is Already Logged In!");
+                //          // print(snapshot.data!.message.toString());
+                //          return Text("${snapshot.data!.message.toString()} !!!",style: TextStyle(fontSize: 20,color: Colors.red),);
+                //        }
+                //     }else if(snapshot.hasError){
+                //       print("${snapshot.error}");
+                //       return Text("${snapshot.error}");
+                //     }else if(snapshot.connectionState==ConnectionState.waiting){
+                //       return Text("waiting.....");
+                //     }
+                //     print(snapshot);
+                //    return CircularProgressIndicator();
+                //   }),
+                // ),
                 SizedBox(
                   height: 20,
                 ),
@@ -333,5 +293,43 @@ class _SecondloginState extends State<Secondlogin> {
   Future<void> saveLogincrd() async {
     final userID = await SharedPreferences.getInstance();
     await userID.setString('nameofuser', _useremail.text);
+  }
+
+  void someFunction() async {
+    UserApiServices userApiServices = UserApiServices();
+    ApiModel apiModel; // Declare the variable here
+    try {
+      ApiModel apiModel = await userApiServices.validationOfUser(_useremail.text,_userpassword.text);
+      // Use the returned value of apiModel here
+      if(apiModel.message== "${_useremail.text} is Already Logged In!"){
+        saveLogincrd();
+        var sharedPref = await SharedPreferences.getInstance();
+        sharedPref.setBool(SplashscreenState.KEYLOGIN, true);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Mainpage(useremail: _useremail.text),
+            ));
+      }else{
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+             return AlertDialog(
+                title: Text('Invalid UserID/Password  '),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+              });
+      }
+      print(apiModel.message);
+    } catch (e) {
+      // Handle the error if any
+    }
   }
 }

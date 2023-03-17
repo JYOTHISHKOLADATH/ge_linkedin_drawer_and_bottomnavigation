@@ -32,6 +32,7 @@ class _ListStockState extends State<ListStock> {
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
                   child: ListTile(
+                    trailing: Text(data.shelfId.toString()),
                     leading: Text('${DateFormat('yyyy-MM-dd HH:mm:ss').format(datetime)}'),
                       title: Text(data.itemName),
                       subtitle: SizedBox(
@@ -45,7 +46,7 @@ class _ListStockState extends State<ListStock> {
                                   // scanedItems.remove(items[index]);
                                   // countOfItems[index]=count;
                                   updateStockCountSub(
-                                      context,now.toString(),data.itemName, data.itemCount);
+                                      context,now.toString(),data.itemName, data.itemCount,data.shelfId);
                                   setState(() {});
                                 },
                                 icon: Icon(Icons.remove)),
@@ -57,7 +58,7 @@ class _ListStockState extends State<ListStock> {
                             IconButton(
                                 onPressed: () {
                                   updateStockCountAdd(now.toString(),
-                                      data.itemName, data.itemCount);
+                                      data.itemName, data.itemCount,data.shelfId);
                                   // count=countOfItems[index];
                                   // count=count+1;
                                   // scanedItems.add(items[index]);
@@ -66,7 +67,8 @@ class _ListStockState extends State<ListStock> {
                                 },
                                 icon: Icon(Icons.add)),
                           ],
-                        ) : Row(
+                        ) :
+                        Row(
                           children: [
                             // IconButton(
                             //     onPressed: () {
@@ -110,7 +112,9 @@ class _ListStockState extends State<ListStock> {
                       //   // EditingMessagePage(data.id,data.title,data.message)
                       //   // updateMessage(MessageModal ,data.id,data.title,data.message);
                       // },
-                     , onLongPress: (){
+                     , onTap: (){
+                    updateStockCountEasy(context,now.toString(),
+                        data.itemName, data.itemCount,data.shelfId);
                         // deleteScannedItem(data.itemName);
                 },),
                 ),

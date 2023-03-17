@@ -28,10 +28,10 @@ import 'dart:developer';
 import 'dart:developer';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ge_bottomnavbar_drawer/sample_model%20%20class.dart';
 import 'apiconstants.dart';
 import 'package:http/http.dart' as http;
 import 'apiModal.dart';
+import 'loginapimodel.dart';
 
 class ApiServices {
   Future<List<Welcome>> getUser() async {

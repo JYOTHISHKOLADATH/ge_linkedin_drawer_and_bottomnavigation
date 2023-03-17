@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/view_schedule_page.dart';
 
+import 'apiactivities/activescheduleapi/activescheduleapiservice.dart';
+import 'apiactivities/activescheduleapi/apimodel.dart';
+
 class ActiveSchedulesPage extends StatefulWidget {
   const ActiveSchedulesPage({Key? key}) : super(key: key);
 
@@ -11,6 +14,9 @@ class ActiveSchedulesPage extends StatefulWidget {
 class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
   @override
   Widget build(BuildContext context) {
+    ScheduleAPIService _futureSchedule = ScheduleAPIService();
+
+    // ScheduleAPIService client= ScheduleAPIService();
     List stockSchedule = ["GE STOCK COUNT JAN'23", "GE STOCK COUNT JUNE'23"];
 
     return Scaffold(
@@ -32,33 +38,73 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
           SizedBox(
             height: 20,
           ),
-          ListView.builder(
-              shrinkWrap: true,
-              // physics: NeverScrollableScrollPhysics(),
-              itemCount: stockSchedule.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8),
-                  child: Card(
-                    elevation: 4,
-                    // color: Color(0xffDEBE95),
-                    child: ListTile(
-                      title: Text(
-                        stockSchedule[index],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ViewSchedule()));
-                      },
-                    ),
-                  ),
-                );
-              }),
+          FutureBuilder(
+              future: _futureSchedule.showingSchedule(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  print(schedulelist);
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  print(schedulelist);
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (snapshot.hasData) {
+                  print(schedulelist);
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      // physics: NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8),
+                          child: Card(
+                            elevation: 4,
+                            // color: Color(0xffDEBE95),
+                            child: ListTile(
+                              title: Text(
+                                snapshot.data![index].schedulename,
+                                // textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              trailing: snapshot.data![index].status == 1
+                                  ? Text(
+                                      "Active",
+                                      style: TextStyle(color: Colors.green),
+                                    )
+                                  : Text("Inactive"),
+                              // subtitle: Text(
+                              //     "End date: ${snapshot.data![index].startdate.split('T').first}"),
+                              subtitle: Text("${snapshot.data![index].cmp_name}  ${snapshot.data![index].branch_name}"),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ViewSchedule(
+                                            snapshot.data![index].schedule_id,
+                                            snapshot.data![index].schedulename,
+                                            snapshot.data![index].startdate,
+                                            snapshot.data![index].enddate,
+                                            snapshot
+                                                .data![index].countingstatus,
+                                            snapshot.data![index].role_id,
+                                            snapshot.data![index].branch_id,
+                                            snapshot.data![index].cmp_id,
+                                            snapshot.data![index].created_at,
+                                            snapshot.data![index].created_by,
+                                            snapshot.data![index].modified_at,
+                                            snapshot.data![index].modified_by,
+                                            snapshot.data![index].status,
+                                          snapshot.data![index].cmp_name,
+                                          snapshot.data![index].branch_name,)));
+                              },
+                            ),
+                          ),
+                        );
+                      });
+                }
+                return CircularProgressIndicator();
+              })
+
           // Spacer(),
           // Divider(height: 10,color: Colors.black,),
           // Container(
