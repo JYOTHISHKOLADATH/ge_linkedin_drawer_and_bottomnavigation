@@ -18,6 +18,7 @@ class _SortinListState extends State<SortinList> {
     // TODO: implement initState
     super.initState();
     getAllItems(widget.shelfId);
+
   }
 
   int i = 0;
