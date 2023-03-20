@@ -77,28 +77,34 @@ class _SortinListState extends State<SortinList> {
           TextField(
             controller: _enteredItem,
           ),
-          ElevatedButton(
-              onPressed: () async {
-                if(_enteredItem.text==""){
-                  return;
-                }else{
-                  final oldStock = await stockExists(_enteredItem.text,widget.shelfId);
-                  print("$oldStock these is oldstocK");
-                  if (oldStock == 0) {
-                    final stockStatus = ModelStockCount(
-                        timeStamp: now.toString(),
-                        itemName: _enteredItem.text, itemCount: 1,shelfId: widget.shelfId);
-                    addItem(stockStatus);
-                  } else {
-                    final cv = await getItemCount(_enteredItem.text,widget.shelfId);
-                    updateScannedItem(_enteredItem.text, cv,now.toString(),widget.shelfId);
-                    print("$cv ");
-                  }
-                  // checkingQuantity();
-                  setState(() {});
-                }
-              },
-              child: Text('Add')),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                  onPressed: () async {
+                    if(_enteredItem.text==""){
+                      return;
+                    }else{
+                      final oldStock = await stockExists(_enteredItem.text,widget.shelfId);
+                      print("$oldStock these is oldstocK");
+                      if (oldStock == 0) {
+                        final stockStatus = ModelStockCount(
+                            timeStamp: now.toString(),
+                            itemName: _enteredItem.text, itemCount: 1,shelfId: widget.shelfId);
+                        addItem(stockStatus);
+                      } else {
+                        final cv = await getItemCount(_enteredItem.text,widget.shelfId);
+                        updateScannedItem(_enteredItem.text, cv,now.toString(),widget.shelfId);
+                        print("$cv ");
+                      }
+                      // checkingQuantity();
+                      setState(() {});
+                    }
+                  },
+                  child: Text('Add')),
+              ElevatedButton(onPressed: (){}, child: Text("Sync"))
+            ],
+          ),
           Expanded(child: ListStock())
           // ListView.builder(
           //     shrinkWrap: true,

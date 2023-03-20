@@ -3,40 +3,44 @@ import 'package:ge_bottomnavbar_drawer/active_schedules_page.dart';
 import 'package:ge_bottomnavbar_drawer/normalmode_screen.dart';
 import 'package:ge_bottomnavbar_drawer/quickmode_screen.dart';
 import 'package:ge_bottomnavbar_drawer/sorting_listPage.dart';
+
+import 'apiactivities/viewschedule_api/viewschedule_api_model.dart';
+import 'apiactivities/viewschedule_api/viewschedule_api_service.dart';
 class ViewSchedule extends StatefulWidget {
 
   ViewSchedule(
       this.schedule_id,
-      this.schedulename,
-      this.startdate,
-      this.enddate,
-      this.countingstatus,
-      this.role_id,
-      this.branch_id,
-      this.cmp_id,
-      this.created_at,
-      this.created_by,
-      this.modified_at,
-      this.modified_by,
-      this.status,
-      this.cmp_name,
-      this.branch_name);
+      // this.schedulename,
+      // this.startdate,
+      // this.enddate,
+      // this.countingstatus,
+      // this.role_id,
+      // this.branch_id,
+      // this.cmp_id,
+      // this.created_at,
+      // this.created_by,
+      // this.modified_at,
+      // this.modified_by,
+      // this.status,
+      // this.cmp_name,
+      // this.branch_name
+  );
 
   int schedule_id;
-  String schedulename;
-  String startdate;
-  String enddate;
-  int countingstatus;
-  int role_id;
-  int branch_id;
-  int cmp_id;
-  String created_at;
-  int created_by;
-  String modified_at;
-  int modified_by;
-  int status;
-  String cmp_name;
-  String branch_name;
+  // String schedulename;
+  // String startdate;
+  // String enddate;
+  // int countingstatus;
+  // int role_id;
+  // int branch_id;
+  // int cmp_id;
+  // String created_at;
+  // int created_by;
+  // String modified_at;
+  // int modified_by;
+  // int status;
+  // String cmp_name;
+  // String branch_name;
 
 
   @override
@@ -44,109 +48,129 @@ class ViewSchedule extends StatefulWidget {
 }
 
 class _ViewScheduleState extends State<ViewSchedule> {
+  late Future<ViewScheduleApiModel> futureAlbum;
+  @override
+  void initState() {
+    // TODO: implement initState
+    futureAlbum= viewSchedule(widget.schedule_id);
+  }
   @override
   Widget build(BuildContext context) {
     bool modeButton=true;
     TextEditingController shelfId= TextEditingController();
+
     return  Scaffold(
       appBar: AppBar(backgroundColor: Theme.of(context).backgroundColor,
         iconTheme: Theme.of(context).iconTheme,
         title: Text('VIEW SCHEDULE'),),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8,top: 40),
-            child: Card(
-              color: Colors.white70,
-              elevation: 4,
-              child: Container(
-                child: Column(
-                  children: [
-                    SizedBox(height: 10,),
-                    Text(widget.schedulename,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                    SizedBox(height: 10,),
-                    Container(
-                      // color: Color(0xffF5BB98),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                                child: Container(child: Text('START DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                            Expanded(
-                                flex: 1,
-                                child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text(widget.startdate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                          ],
+          FutureBuilder(
+            future: futureAlbum,
+              builder: (context, snapshot) {
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return CircularProgressIndicator();
+            }else if (snapshot.hasError) {
+              print(snapshot.error);
+              return Center(child: Text('Error: ${snapshot.error}'));
+            }else if (snapshot.hasData) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8,top: 40),
+                child: Card(
+                  color: Colors.white70,
+                  elevation: 4,
+                  child: Container(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 10,),
+                        Text(snapshot.data!.schedulename,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                        Container(
+                          // color: Color(0xffF5BB98),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text('START DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
+                                Expanded(
+                                    flex: 1,
+                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text(snapshot.data!.startdate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 10,),
+                        Container(
+                          // color: Color(0xffF5BB98),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text('END DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
+                                Expanded(
+                                    flex: 1,
+                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text(snapshot.data!.enddate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                              ],
+                            ),
+                          ),
+                        ),SizedBox(height: 10,),
+                        Container(
+                          // color: Color(0xffF5BB98),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text('BRANCH',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
+                                Expanded(
+                                    flex: 1,
+                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text(snapshot.data!.branch_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                              ],
+                            ),
+                          ),
+                        ),SizedBox(height: 10,),
+                        Container(
+                          // color: Color(0xffF5BB98),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child: Text('COUNTING STATUS',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
+                                Expanded(
+                                    flex: 1,
+                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
+                                Expanded(
+                                    flex: 3,
+                                    child: Container(child:snapshot.data!.status==1 ? Text('Active',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,) : Text("Inactive"),)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 10,),
-                    Container(
-                      // color: Color(0xffF5BB98),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text('END DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                            Expanded(
-                                flex: 1,
-                                child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text(widget.enddate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                          ],
-                        ),
-                      ),
-                    ),SizedBox(height: 10,),
-                    Container(
-                      // color: Color(0xffF5BB98),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text('BRANCH',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                            Expanded(
-                                flex: 1,
-                                child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text(widget.branch_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                          ],
-                        ),
-                      ),
-                    ),SizedBox(height: 10,),
-                    Container(
-                      // color: Color(0xffF5BB98),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 3,
-                                child: Container(child: Text('COUNTING STATUS',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                            Expanded(
-                                flex: 1,
-                                child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                            Expanded(
-                                flex: 3,
-                                child: Container(child:widget.status==1 ? Text('Active',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,) : Text("Inactive"),)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          )
+              );
+            }
+            return Text("Something wrong!");
+          }),
+
           // Container(
           //   child: Column(
           //     children: [
@@ -172,7 +196,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
           //     ],
           //   ),
           // )
-          ,Spacer(),
+          Spacer(),
           TextField(controller: shelfId,),
     ElevatedButton(
     style: ButtonStyle(

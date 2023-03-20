@@ -81,21 +81,22 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                                     MaterialPageRoute(
                                         builder: (context) => ViewSchedule(
                                             snapshot.data![index].schedule_id,
-                                            snapshot.data![index].schedulename,
-                                            snapshot.data![index].startdate,
-                                            snapshot.data![index].enddate,
-                                            snapshot
-                                                .data![index].countingstatus,
-                                            snapshot.data![index].role_id,
-                                            snapshot.data![index].branch_id,
-                                            snapshot.data![index].cmp_id,
-                                            snapshot.data![index].created_at,
-                                            snapshot.data![index].created_by,
-                                            snapshot.data![index].modified_at,
-                                            snapshot.data![index].modified_by,
-                                            snapshot.data![index].status,
-                                          snapshot.data![index].cmp_name,
-                                          snapshot.data![index].branch_name,)));
+                                          //   snapshot.data![index].schedulename,
+                                          //   snapshot.data![index].startdate,
+                                          //   snapshot.data![index].enddate,
+                                          //   snapshot
+                                          //       .data![index].countingstatus,
+                                          //   snapshot.data![index].role_id,
+                                          //   snapshot.data![index].branch_id,
+                                          //   snapshot.data![index].cmp_id,
+                                          //   snapshot.data![index].created_at,
+                                          //   snapshot.data![index].created_by,
+                                          //   snapshot.data![index].modified_at,
+                                          //   snapshot.data![index].modified_by,
+                                          //   snapshot.data![index].status,
+                                          // snapshot.data![index].cmp_name,
+                                          // snapshot.data![index].branch_name,
+                                    )));
                               },
                             ),
                           ),
