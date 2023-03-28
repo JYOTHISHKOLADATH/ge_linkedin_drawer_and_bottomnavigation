@@ -54,64 +54,64 @@ class _MainpageState extends State<Mainpage> {
       //   Navigator.push(context, MaterialPageRoute(builder: (context)=>SortinList()));
       // },label: Text('Api test'),),
         key: ScaffoldKey,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).backgroundColor,
-          iconTheme: Theme.of(context).iconTheme,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-                onTap: () {
-                  ScaffoldKey.currentState?.openDrawer();
-                },
-                child:
-                    const Image(image: AssetImage('image/profileimage.png'))),
-          ),
-          // backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text(
-            'GE STOCKCOUNT',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          // SizedBox(
-          //   height: 40,
-          //   child: TextField(
-          //     cursorColor: Colors.black,
-          //     style:
-          //         TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          //     decoration: InputDecoration(
-          //       fillColor: Color(0xffe8e8e8),
-          //       hintText: 'search',
-          //       hintStyle: TextStyle(color: Color(0xff283134)),
-          //       prefixIcon: const Icon(
-          //         Icons.search,
-          //         color: Colors.black,
-          //       ),
-          //       border: const OutlineInputBorder(),
-          //       isDense: true,
-          //       contentPadding: const EdgeInsets.all(8),
-          //       filled: true,
-          //       focusedBorder:
-          //           OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
-          //     ),
-          //   ),
-          // ),
-          actions: [
-            // IconButton(onPressed: (){}, icon: Icon(Icons.location_on_outlined,color: Colors.white,)),
-            Visibility(
-              visible: isvisible,
-              child: IconButton(
-                icon: Icon(
-                  Icons.more_vert_sharp,
-                  color: Theme.of(context).unselectedWidgetColor,
-                ),
-                onPressed: () {
-                  bottom(context);
-                },
-              ),
-            ),
-
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Theme.of(context).backgroundColor,
+        //   iconTheme: Theme.of(context).iconTheme,
+        //   leading: Padding(
+        //     padding: const EdgeInsets.all(8.0),
+        //     child: InkWell(
+        //         onTap: () {
+        //           ScaffoldKey.currentState?.openDrawer();
+        //         },
+        //         child:
+        //             const Image(image: AssetImage('image/profileimage.png'))),
+        //   ),
+        //   // backgroundColor: Colors.white,
+        //   centerTitle: true,
+        //   title: Text(
+        //     'GE STOCKCOUNT',
+        //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        //   ),
+        //   // SizedBox(
+        //   //   height: 40,
+        //   //   child: TextField(
+        //   //     cursorColor: Colors.black,
+        //   //     style:
+        //   //         TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        //   //     decoration: InputDecoration(
+        //   //       fillColor: Color(0xffe8e8e8),
+        //   //       hintText: 'search',
+        //   //       hintStyle: TextStyle(color: Color(0xff283134)),
+        //   //       prefixIcon: const Icon(
+        //   //         Icons.search,
+        //   //         color: Colors.black,
+        //   //       ),
+        //   //       border: const OutlineInputBorder(),
+        //   //       isDense: true,
+        //   //       contentPadding: const EdgeInsets.all(8),
+        //   //       filled: true,
+        //   //       focusedBorder:
+        //   //           OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
+        //   //     ),
+        //   //   ),
+        //   // ),
+        //   actions: [
+        //     // IconButton(onPressed: (){}, icon: Icon(Icons.location_on_outlined,color: Colors.white,)),
+        //     Visibility(
+        //       visible: isvisible,
+        //       child: IconButton(
+        //         icon: Icon(
+        //           Icons.more_vert_sharp,
+        //           color: Theme.of(context).unselectedWidgetColor,
+        //         ),
+        //         onPressed: () {
+        //           bottom(context);
+        //         },
+        //       ),
+        //     ),
+        //
+        //   ],
+        // ),
         body:
         screens[currentIndex],
         // bottomNavigationBar: CustomLineIndicatorBottomNavbar(

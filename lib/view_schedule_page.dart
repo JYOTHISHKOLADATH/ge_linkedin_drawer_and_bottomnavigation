@@ -6,24 +6,24 @@ import 'package:ge_bottomnavbar_drawer/sorting_listPage.dart';
 
 import 'apiactivities/viewschedule_api/viewschedule_api_model.dart';
 import 'apiactivities/viewschedule_api/viewschedule_api_service.dart';
-class ViewSchedule extends StatefulWidget {
 
+class ViewSchedule extends StatefulWidget {
   ViewSchedule(
-      this.schedule_id,
-      // this.schedulename,
-      // this.startdate,
-      // this.enddate,
-      // this.countingstatus,
-      // this.role_id,
-      // this.branch_id,
-      // this.cmp_id,
-      // this.created_at,
-      // this.created_by,
-      // this.modified_at,
-      // this.modified_by,
-      // this.status,
-      // this.cmp_name,
-      // this.branch_name
+    this.schedule_id,
+    // this.schedulename,
+    // this.startdate,
+    // this.enddate,
+    // this.countingstatus,
+    // this.role_id,
+    // this.branch_id,
+    // this.cmp_id,
+    // this.created_at,
+    // this.created_by,
+    // this.modified_at,
+    // this.modified_by,
+    // this.status,
+    // this.cmp_name,
+    // this.branch_name
   );
 
   int schedule_id;
@@ -41,7 +41,7 @@ class ViewSchedule extends StatefulWidget {
   // int status;
   // String cmp_name;
   // String branch_name;
-
+  int contgap=5;
 
   @override
   State<ViewSchedule> createState() => _ViewScheduleState();
@@ -52,294 +52,447 @@ class _ViewScheduleState extends State<ViewSchedule> {
   @override
   void initState() {
     // TODO: implement initState
-    futureAlbum= viewSchedule(widget.schedule_id);
+    futureAlbum = viewSchedule(widget.schedule_id);
   }
+
   @override
   Widget build(BuildContext context) {
-    bool modeButton=true;
-    TextEditingController shelfId= TextEditingController();
+    bool isButtonEnabled = false;
+    bool isScanShelfVisible = false;
+    bool isScanningAlreadyStarted = false;
+    TextEditingController shelfId = TextEditingController();
 
-    return  Scaffold(
-      appBar: AppBar(backgroundColor: Theme.of(context).backgroundColor,
-        iconTheme: Theme.of(context).iconTheme,
-        title: Text('VIEW SCHEDULE'),),
-      body: Column(
-        children: [
-          FutureBuilder(
-            future: futureAlbum,
-              builder: (context, snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return CircularProgressIndicator();
-            }else if (snapshot.hasError) {
-              print(snapshot.error);
-              return Center(child: Text('Error: ${snapshot.error}'));
-            }else if (snapshot.hasData) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 8,top: 40),
-                child: Card(
-                  color: Colors.white70,
-                  elevation: 4,
-                  child: Container(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 10,),
-                        Text(snapshot.data!.schedulename,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                        SizedBox(height: 10,),
-                        Container(
-                          // color: Color(0xffF5BB98),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text('START DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text(snapshot.data!.startdate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                              ],
+    return Scaffold(
+      backgroundColor: Color(0xffE8F9FF),
+      // appBar: AppBar(backgroundColor: Theme.of(context).backgroundColor,
+      //   iconTheme: Theme.of(context).iconTheme,
+      //   title: Text('VIEW SCHEDULE'),),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SafeArea(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Icon(
+                          Icons.arrow_back_ios_sharp,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Text("View Schdules",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    SizedBox(width: 20,)
+                  ],
+                )),
+            FutureBuilder(
+                future: futureAlbum,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (snapshot.hasData) {
+
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height *
+                            .4,
+                        decoration: BoxDecoration(
+                            color: Color(0XFFFFFFFF),
+                            borderRadius: BorderRadius.circular(
+                               20.0
+                            // topLeft: Radius.circular(10),
+                            // topRight: Radius.circular(10)
+                            )),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              snapshot.data!.schedulename,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Container(
+                              // color: Color(0xffF5BB98),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 8),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'START DATE',textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          child: Text(
+                                            snapshot.data!.startdate
+                                                .split("T")
+                                                .first,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 8),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        child: Row(
+                                          children: [
+                                            // Icon(Icons.pin_end),
+                                            // SizedBox(width: 20,),
+                                            Text(
+                                              'END DATE',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        child: Text(
+                                          ':',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        child: Text(
+                                          snapshot.data!.enddate
+                                              .split("T")
+                                              .first,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              // color: Color(0xffF5BB98),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 8),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          child: Row(
+                                            children: [
+                                              // Icon(Icons.business_sharp),
+                                              // SizedBox(width: 20,),
+                                              Text(
+                                                'BRANCH',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          child: Text(
+                                            ':',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          child: Text(
+                                            snapshot.data!.branch_name,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 8),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        child: Text(
+                                          'COUNTING STATUS',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        child: Text(
+                                          ':',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        child: snapshot.data!.status == 1
+                                            ? Text(
+                                                'Active',
+                                                style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                    fontSize: 15),
+                                                textAlign: TextAlign.left,
+                                              )
+                                            : Text("Inactive"),
+                                      )),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                  return Text("Something wrong!");
+                }),
+            SizedBox(height: 50,),
+            Visibility(
+                child: Text(
+              "PLEASE SCAN A SHELF",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            )),
+            SizedBox(height: 30,),
+            Padding(
+              padding: const EdgeInsets.only(left: 28.0,right: 28),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide(color: Colors.yellow), // set border color here
+                    ),
+                    contentPadding: EdgeInsets.all(10.0),
+                  ),
+                  controller: shelfId,
+                  onChanged: (value) {
+                  },
+                ),
+              ),
+            ),
+            // SizedBox(height: 50,),
+            Visibility(
+              visible: isScanningAlreadyStarted,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll<Color>(
+                                      Colors.teal),
+                            ),
+                            onPressed: () {},
+                            child: Text('RESUME')),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll<Color>(
+                                      Colors.teal),
+                            ),
+                            onPressed: () {},
+                            child: Text('SCAN NEW SHELF')),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(height: 20,),
+                Container(
+                  width: double.maxFinite,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 28.0,right: 28,top: 8),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
+                          shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10,),
-                        Container(
-                          // color: Color(0xffF5BB98),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text('END DATE',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text(snapshot.data!.enddate.split("T").first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                              ],
-                            ),
-                          ),
-                        ),SizedBox(height: 10,),
-                        Container(
-                          // color: Color(0xffF5BB98),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text('BRANCH',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text(snapshot.data!.branch_name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                              ],
-                            ),
-                          ),
-                        ),SizedBox(height: 10,),
-                        Container(
-                          // color: Color(0xffF5BB98),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child: Text('COUNTING STATUS',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),)),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(child: Text(':',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,),)),
-                                Expanded(
-                                    flex: 3,
-                                    child: Container(child:snapshot.data!.status==1 ? Text('Active',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.center,) : Text("Inactive"),)),
-                              ],
+                        onPressed: () {
+                          if (shelfId.text != "") {
+    Navigator.push(context, new MaterialPageRoute(
+    builder: (context) => SortinList(shelfId.text)
+    )).then((value) {
+    //This makes sure the textfield is cleared after page is pushed.
+    shelfId.clear();});
+
+                            // shelfId.clear();
+                          } else {
+
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Enter a valid Shelf ID'),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor: MaterialStatePropertyAll<Color>(
+                                              Colors.deepPurple),
+                                          shape:
+                                          MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10.0),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Ok"),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          }
+
+                        },
+                        child: Text('START',style: TextStyle(fontSize: 15),)),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  width: double.maxFinite,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 28.0,right: 28),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.deepPurple),
+                          shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
                         ),
-                      ],
+                        onPressed: () {},
+                        child: Text('COUNTING STATISTICS',style: TextStyle(fontSize: 15),)
                     ),
                   ),
                 ),
-              );
-            }
-            return Text("Something wrong!");
-          }),
-
-          // Container(
-          //   child: Column(
-          //     children: [
-          //       ListTile(
-          //         title: Text("GE STOCK COUNT scheduled date",textAlign: TextAlign.center,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          //       ),ListTile(
-          //         leading: Text('START DATE',style: TextStyle(fontSize: 18),),
-          //         title: Text(":"),
-          //         trailing: Text('01 Jan',style: TextStyle(fontSize: 18),),
-          //       ),ListTile(
-          //         leading: Text('END DATE',style: TextStyle(fontSize: 18),),
-          //         title: Text(":"),
-          //         trailing: Text('15 Jan',style: TextStyle(fontSize: 18),),
-          //       ),ListTile(
-          //         leading: Text('BRANCH',style: TextStyle(fontSize: 18),),
-          //         title: Text(":"),
-          //         trailing: Text('Dubai',style: TextStyle(fontSize: 18),),
-          //       ),ListTile(
-          //         leading: Text('COUNTING STATUS',style: TextStyle(fontSize: 18),),
-          //         title: Text(":"),
-          //         trailing: Text('Active',style: TextStyle(fontSize: 18),),
-          //       )
-          //     ],
-          //   ),
-          // )
-          Spacer(),
-          TextField(controller: shelfId,),
-    ElevatedButton(
-    style: ButtonStyle(
-    backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-    ),
-    onPressed: (){
-      if(shelfId.text!=""){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>SortinList(shelfId.text)));
-      }else{
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Enter a valid Shelf ID'),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text('Ok'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            });
-      }
-    }, child: Text('add shelf'))
-          ,Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-                        ),
-                        onPressed: (){setState(() {
-                          modeButton=!modeButton;
-                          print(modeButton);
-                    });}, child: Text('START')),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-                        ),
-                        onPressed: (){},
-                        child: Text('COUNTING STATISTICS')),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Visibility(
-          //       visible: modeButton,
-          //         child: Expanded(
-          //           child: Padding(
-          //             padding: const EdgeInsets.all(8.0),
-          //             child: Container(
-          //               child: ElevatedButton(
-          //                   style: ButtonStyle(
-          //                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-          //                   ),
-          //                   onPressed: (){
-          //                 Navigator.push(context, MaterialPageRoute(builder: (context)=> QuickModeDetailsScreen()));
-          //               }, child: Text('QUICK')),
-          //             ),
-          //           ),
-          //         )),
-          //     Visibility(
-          //       visible: modeButton,
-          //         child: Expanded(
-          //           child: Padding(
-          //             padding: const EdgeInsets.all(8.0),
-          //             child: Container(
-          //               child: ElevatedButton(
-          //                   style: ButtonStyle(
-          //                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.teal),
-          //                   ),
-          //                   onPressed: (){
-          //                 Navigator.push(context, MaterialPageRoute(builder: (context)=> NormalStockCountPage()));
-          //               }, child: Text('NORMAL')),
-          //             ),
-          //           ),
-          //         ))
-          //   ],
-          // ),
-          Spacer(),
-          // Divider(height: 10,color: Colors.black,),
-          // Container(
-          //   decoration: BoxDecoration(color: Colors.teal,borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)), boxShadow: [
-          //     BoxShadow(
-          //       color: Colors.grey,
-          //       blurRadius: 10.0, // soften the shadow
-          //       spreadRadius: 1.0, //extend the shadow
-          //       offset: Offset(
-          //         5.0, // Move to right 5  horizontally
-          //         -5.0, // Move to bottom 5 Vertically
-          //       ),
-          //     )
-          //   ],),
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(8.0),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(left: 11.0),
-          //           child: Column(
-          //             children: [
-          //               Icon(Icons.home,size: 35,color: Color(0xffC3DAD7),),
-          //               Text("HOME",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffC3DAD7),),)
-          //             ],
-          //           ),
-          //         ),
-          //         Padding(
-          //           padding: const EdgeInsets.only(right: 11.0),
-          //           child: InkWell(
-          //             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> ActiveSchedulesPage()));},
-          //             child: Column(
-          //               children: [
-          //                 Icon(Icons.close,size: 35,color: Color(0xffC3DAD7),),
-          //                 Text("CLOSE",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xffC3DAD7),),)
-          //               ],
-          //             ),
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 22,child: Container(color: Colors.amber,),)
-        ],
+              ],
+            ),
+            SizedBox(
+              height: 50,
+            )
+          ],
+        ),
       ),
     );
   }

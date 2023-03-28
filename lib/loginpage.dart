@@ -41,10 +41,10 @@ class _SecondloginState extends State<Secondlogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Color(0xffE8F9FF),
       body: Center(
         child: Container(
-          color: Color(0xff2F4247),
+          // color: Color(0xff2F4247),
           child: Padding(
             padding: const EdgeInsets.all(22.0),
             child: Column(
@@ -61,7 +61,7 @@ class _SecondloginState extends State<Secondlogin> {
                         text: TextSpan(
                             text: 'GE ',
                             style: TextStyle(
-                                fontSize: 38, fontWeight: FontWeight.bold),
+                                fontSize: 38, fontWeight: FontWeight.bold,color: Colors.red),
                             children: [
                               TextSpan(
                                   text: 'STOCKCOUNT',
@@ -80,12 +80,20 @@ class _SecondloginState extends State<Secondlogin> {
                       children: [
                         Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey[200]),
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.white),
                             child: TextFormField(
                               style: TextStyle(color: Colors.black),
                               controller: _useremail,
                               decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                ),
                                 suffixIcon: Visibility(
                                     visible: vis,
                                     child: Icon(
@@ -93,7 +101,7 @@ class _SecondloginState extends State<Secondlogin> {
                                       color: Colors.red,
                                     )),
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(30)),
                                 hintText: 'Email Adress',
                                 hintStyle: TextStyle(color: Colors.black),
                               ),
@@ -137,14 +145,24 @@ class _SecondloginState extends State<Secondlogin> {
                         ),
                         Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey[200]),
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.white),
                             child: TextFormField(
                               controller: _userpassword,
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                  ),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(color: Colors.yellow), // set border color here
+                                  ),
                                   hintText: 'Password',
                                   hintStyle: TextStyle(color: Colors.black),
                                   suffixIcon: IconButton(
@@ -218,7 +236,7 @@ class _SecondloginState extends State<Secondlogin> {
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        backgroundColor: Colors.teal,
+                        backgroundColor: Colors.deepPurple,
                         foregroundColor: Colors.white),
                   ),
                 ),
@@ -267,20 +285,20 @@ class _SecondloginState extends State<Secondlogin> {
                 ),
                 // Spacer(),
                 // SizedBox(height: 30,),
-                InkWell(
-                  child: Text(
-                    'forgot password?',
-                    style: TextStyle(
-                        color: Colors.white70, fontWeight: FontWeight.bold),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Forgotpassword(),
-                        ));
-                  },
-                ),
+                // InkWell(
+                //   child: Text(
+                //     'forgot password?',
+                //     style: TextStyle(
+                //         color: Colors.white70, fontWeight: FontWeight.bold),
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => Forgotpassword(),
+                //         ));
+                //   },
+                // ),
                 Spacer()
               ],
             ),

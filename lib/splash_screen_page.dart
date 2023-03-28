@@ -26,14 +26,14 @@ class SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2F4247),
+      backgroundColor: Color(0xffE8F9FF),
       body: Center(
         child: Container(
             child: RichText(
           text: TextSpan(
               text: 'GE ',
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.red,
                   fontSize: 30,
                   fontWeight: FontWeight.bold),
               children: [
