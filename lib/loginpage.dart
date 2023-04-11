@@ -41,265 +41,289 @@ class _SecondloginState extends State<Secondlogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE8F9FF),
-      body: Center(
-        child: Container(
-          // color: Color(0xff2F4247),
-          child: Padding(
-            padding: const EdgeInsets.all(22.0),
+      // backgroundColor: Color(0xffE8F9FF),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("image/WhatsApp Image 2023-03-30 at 10.14.39 AM.jpeg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Container(
+            // color: Color(0xff2F4247),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                            text: 'GE ',
-                            style: TextStyle(
-                                fontSize: 38, fontWeight: FontWeight.bold,color: Colors.red),
-                            children: [
-                              TextSpan(
-                                  text: 'STOCKCOUNT',
-                                  style: TextStyle(color: Colors.indigo))
-                            ]),
-                      ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-                Form(
-                    key: validationkey,
+                    color: Colors.black.withOpacity(0.4), // set opacity to 0.5
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(22.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white),
-                            child: TextFormField(
-                              style: TextStyle(color: Colors.black),
-                              controller: _useremail,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                        // Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                    text: 'Login ',
+                                    style: TextStyle(
+                                        fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
+                                    // children: [
+                                    //   TextSpan(
+                                    //       text: 'STOCKCOUNT',
+                                    //       style: TextStyle(color: Colors.yellow.shade200))
+                                    // ]
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(color: Color(0xffE8F9FF),),
-                                ),
-                                suffixIcon: Visibility(
-                                    visible: vis,
-                                    child: Icon(
-                                      Icons.error_outline,
-                                      color: Colors.red,
-                                    )),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30)),
-                                hintText: 'Email Adress',
-                                hintStyle: TextStyle(color: Colors.black),
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  setState(() {
-                                    vis = true;
-                                    mailerror = true;
-                                    _isvalidemail = false;
-                                  });
-                                  return null;
-                                }
-                                if (!RegExp(
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                    .hasMatch(value)) {
-                                  setState(() {
-                                    vis = false;
-                                    mailerror = false;
-                                    _isvalidemail = true;
-                                  });
-                                  return null;
-                                }
-                                setState(() {
-                                  vis = false;
-                                  mailerror = false;
-                                  _isvalidemail = true;
-                                });
-                                return null;
-                              },
-                            )),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Visibility(
-                                visible: mailerror,
-                                child: Text(
-                                  'Enter a valid e- mail',
-                                  style: TextStyle(color: Colors.red),
-                                ))),
+                            ),
+                          ],
+                        ),
                         SizedBox(
-                          height: 20,
+                          height: 50,
+                        ),
+                        Form(
+                            key: validationkey,
+                            child: Column(
+                              children: [
+                                Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Colors.white),
+                                    child: TextFormField(
+                                      style: TextStyle(color: Colors.black),
+                                      controller: _useremail,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(15),
+                                          borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(15),
+                                          borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                        ),
+                                        suffixIcon: Visibility(
+                                            visible: vis,
+                                            child: Icon(
+                                              Icons.error_outline,
+                                              color: Colors.red,
+                                            )),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(30)),
+                                        hintText: 'Email Adress',
+                                        hintStyle: TextStyle(color: Colors.black),
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          setState(() {
+                                            vis = true;
+                                            mailerror = true;
+                                            _isvalidemail = false;
+                                          });
+                                          return null;
+                                        }
+                                        if (!RegExp(
+                                                r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                            .hasMatch(value)) {
+                                          setState(() {
+                                            vis = false;
+                                            mailerror = false;
+                                            _isvalidemail = true;
+                                          });
+                                          return null;
+                                        }
+                                        setState(() {
+                                          vis = false;
+                                          mailerror = false;
+                                          _isvalidemail = true;
+                                        });
+                                        return null;
+                                      },
+                                    )),
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Visibility(
+                                        visible: mailerror,
+                                        child: Text(
+                                          'Enter a valid e- mail',
+                                          style: TextStyle(color: Colors.red),
+                                        ))),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Colors.white),
+                                    child: TextFormField(
+                                      controller: _userpassword,
+                                      style: TextStyle(color: Colors.black),
+                                      decoration: InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(15),
+                                            borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(15),
+                                            borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(15),
+                                            borderSide: BorderSide(color: Colors.yellow), // set border color here
+                                          ),
+                                          hintText: 'Password',
+                                          hintStyle: TextStyle(color: Colors.black),
+                                          suffixIcon: IconButton(
+                                            icon: isPasswordvisible
+                                                ? Icon(Icons.visibility_off)
+                                                : Icon(Icons.visibility),
+                                            onPressed: () {
+                                              setState(() {
+                                                isPasswordvisible = !isPasswordvisible;
+                                              });
+                                            },
+                                          )),
+                                      obscureText: isPasswordvisible,
+                                      validator: (value) {
+                                        if (value == null ||
+                                            value.isEmpty ||
+                                            value.length <= 2) {
+                                          setState(() {
+                                            _isvalidpassowd = false;
+                                            passerror = true;
+                                          });
+                                        } else {
+                                          setState(() {
+                                            _isvalidpassowd = true;
+                                            passerror = false;
+                                          });
+                                        }
+                                      },
+                                    )),
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Visibility(
+                                        visible: passerror,
+                                        child: Text(
+                                          'Enter a valid password',
+                                          style: TextStyle(color: Colors.red),
+                                        ))),
+                              ],
+                            )),
+                        SizedBox(height: 30),
+                        SizedBox(
+                          height: 15,
                         ),
                         Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.white),
-                            child: TextFormField(
-                              controller: _userpassword,
-                              style: TextStyle(color: Colors.black),
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide(color: Color(0xffE8F9FF),),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide(color: Color(0xffE8F9FF),),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide(color: Colors.yellow), // set border color here
-                                  ),
-                                  hintText: 'Password',
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  suffixIcon: IconButton(
-                                    icon: isPasswordvisible
-                                        ? Icon(Icons.visibility_off)
-                                        : Icon(Icons.visibility),
-                                    onPressed: () {
-                                      setState(() {
-                                        isPasswordvisible = !isPasswordvisible;
-                                      });
-                                    },
-                                  )),
-                              obscureText: isPasswordvisible,
-                              validator: (value) {
-                                if (value == null ||
-                                    value.isEmpty ||
-                                    value.length <= 2) {
-                                  setState(() {
-                                    _isvalidpassowd = false;
-                                    passerror = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    _isvalidpassowd = true;
-                                    passerror = false;
-                                  });
-                                }
-                              },
-                            )),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Visibility(
-                                visible: passerror,
-                                child: Text(
-                                  'Enter a valid password',
-                                  style: TextStyle(color: Colors.red),
-                                ))),
-                      ],
-                    )),
-                SizedBox(height: 30),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  width: 250,
-                  height: 45,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // if successfully logged in
-                      if (validationkey.currentState!.validate()) {
-                        if (_isvalidpassowd && _isvalidemail) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Mainpage(useremail: _useremail.text),
-                              ));
-                // var   data =       UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
-              // someFunction();
-              // print(apiModel);
+                          width: 250,
+                          height: 45,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              // if successfully logged in
+                              if (validationkey.currentState!.validate()) {
+                                if (_isvalidpassowd && _isvalidemail) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Mainpage(useremail: _useremail.text),
+                                      ));
+                        // var   data =       UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
+                      // someFunction();
+                      // print(apiModel);
 
-                        }
-                      }
-                    },
-                    child: Text('Login',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    // style: ElevatedButton.styleFrom(
-                    //   backgroundColor: Colors.white,
-                    //   foregroundColor: Colors.black,
-                    // )
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        backgroundColor: Colors.deepPurple,
-                        foregroundColor: Colors.white),
+                                }
+                              }
+                            },
+                            child: Text('Login',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            // style: ElevatedButton.styleFrom(
+                            //   backgroundColor: Colors.white,
+                            //   foregroundColor: Colors.black,
+                            // )
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                backgroundColor: Colors.deepPurple,
+                                foregroundColor: Colors.white),
+                          ),
+                        ),
+                        // Visibility(
+                        //   visible: futureVisible,
+                        //   child: FutureBuilder<ApiModel>(
+                        //     future: albamfuture,
+                        //       builder: (context,snapshot){
+                        //     if(snapshot.hasData){
+                        //       print(snapshot.data!.message);
+                        //       // return Text(snapshot.data!.message.toString());
+                        //        if(snapshot.data!.message=="${_useremail.text} is Already Logged In!"){
+                        //          // Navigator.push(
+                        //          //     context,
+                        //          //     MaterialPageRoute(
+                        //          //       builder: (context) => Forgotpassword(),
+                        //          //     ));
+                        //          return AlertDialog(
+                        //            title: Text('User Already loged in!!'),
+                        //            actions: <Widget>[
+                        //              TextButton(
+                        //                child: Text('Ok'),
+                        //                onPressed: () {
+                        //                  Navigator.of(context).pop();
+                        //                },
+                        //              ),
+                        //            ],
+                        //          );
+                        //        }else{
+                        //          // print("${_useremail.text} is Already Logged In!");
+                        //          // print(snapshot.data!.message.toString());
+                        //          return Text("${snapshot.data!.message.toString()} !!!",style: TextStyle(fontSize: 20,color: Colors.red),);
+                        //        }
+                        //     }else if(snapshot.hasError){
+                        //       print("${snapshot.error}");
+                        //       return Text("${snapshot.error}");
+                        //     }else if(snapshot.connectionState==ConnectionState.waiting){
+                        //       return Text("waiting.....");
+                        //     }
+                        //     print(snapshot);
+                        //    return CircularProgressIndicator();
+                        //   }),
+                        // ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        // Spacer(),
+                        // SizedBox(height: 30,),
+                        // InkWell(
+                        //   child: Text(
+                        //     'forgot password?',
+                        //     style: TextStyle(
+                        //         color: Colors.white70, fontWeight: FontWeight.bold),
+                        //   ),
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //           builder: (context) => Forgotpassword(),
+                        //         ));
+                        //   },
+                        // ),
+                        // Spacer()
+                      ],
+                    ),
                   ),
                 ),
-                // Visibility(
-                //   visible: futureVisible,
-                //   child: FutureBuilder<ApiModel>(
-                //     future: albamfuture,
-                //       builder: (context,snapshot){
-                //     if(snapshot.hasData){
-                //       print(snapshot.data!.message);
-                //       // return Text(snapshot.data!.message.toString());
-                //        if(snapshot.data!.message=="${_useremail.text} is Already Logged In!"){
-                //          // Navigator.push(
-                //          //     context,
-                //          //     MaterialPageRoute(
-                //          //       builder: (context) => Forgotpassword(),
-                //          //     ));
-                //          return AlertDialog(
-                //            title: Text('User Already loged in!!'),
-                //            actions: <Widget>[
-                //              TextButton(
-                //                child: Text('Ok'),
-                //                onPressed: () {
-                //                  Navigator.of(context).pop();
-                //                },
-                //              ),
-                //            ],
-                //          );
-                //        }else{
-                //          // print("${_useremail.text} is Already Logged In!");
-                //          // print(snapshot.data!.message.toString());
-                //          return Text("${snapshot.data!.message.toString()} !!!",style: TextStyle(fontSize: 20,color: Colors.red),);
-                //        }
-                //     }else if(snapshot.hasError){
-                //       print("${snapshot.error}");
-                //       return Text("${snapshot.error}");
-                //     }else if(snapshot.connectionState==ConnectionState.waiting){
-                //       return Text("waiting.....");
-                //     }
-                //     print(snapshot);
-                //    return CircularProgressIndicator();
-                //   }),
-                // ),
-                SizedBox(
-                  height: 20,
-                ),
-                // Spacer(),
-                // SizedBox(height: 30,),
-                // InkWell(
-                //   child: Text(
-                //     'forgot password?',
-                //     style: TextStyle(
-                //         color: Colors.white70, fontWeight: FontWeight.bold),
-                //   ),
-                //   onTap: () {
-                //     Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //           builder: (context) => Forgotpassword(),
-                //         ));
-                //   },
-                // ),
-                Spacer()
               ],
             ),
           ),

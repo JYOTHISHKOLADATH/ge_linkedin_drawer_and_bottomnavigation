@@ -20,9 +20,9 @@ class _HomescreenState extends State<Homescreen> {
   var ScaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    List iconOfFunction=["image/clipboard.png","image/settings (1).png","image/statistics.png"];
-    List nameOfFunction=['SCHEDULES','SETTINGS',"COUNTING STATISTICS"];
-    List navigationPages=[ActiveSchedulesPage(),FreePage(),FreePage()];
+    List iconOfFunction=["image/clipboard.png","image/statistics.png"];
+    List nameOfFunction=['SCHEDULES',"COUNTING STATISTICS"];
+    List navigationPages=[ActiveSchedulesPage(),FreePage()];
     String enteredMail = widget.name;
     var mailsplit = enteredMail.split('@');
     String _username = mailsplit[0].toUpperCase();
@@ -37,6 +37,7 @@ class _HomescreenState extends State<Homescreen> {
        child: SingleChildScrollView(
          child: Column(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           crossAxisAlignment: CrossAxisAlignment.start,
            children: [
              SafeArea(
                  child: Row(
@@ -55,6 +56,12 @@ class _HomescreenState extends State<Homescreen> {
                      SizedBox(width: 20,)
                    ],
                  )),
+             RichText(text: TextSpan(
+                 children: [
+                   TextSpan(text: "Hi,",style: TextStyle(color: Colors.black,fontSize: 18),),
+                   TextSpan(text: "\n${widget.name}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20))
+                 ]
+             )),
              Column(
                children: [
                  Image(image: NetworkImage("https://media.istockphoto.com/id/1264890031/vector/abstract-financial-chart-with-an-uptrend-line-graph.jpg?s=2048x2048&w=is&k=20&c=w-O7huxh2W3DP3rkAXtG0sxKm-OCfMOeV_GA9qFuXkY=")),
@@ -76,7 +83,7 @@ class _HomescreenState extends State<Homescreen> {
                              child: Container(
                                height: 200,
                                width: 100,
-                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Color(0xffE8F9FF),boxShadow: [
+                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),color: Colors.white,boxShadow: [
                                  // BoxShadow(
                                  //   color:  Colors.grey,
                                  //   blurRadius: 15.0, // soften the shadow
@@ -97,6 +104,7 @@ class _HomescreenState extends State<Homescreen> {
                                        height: 80,
                                        child: Image(image: AssetImage(iconOfFunction[index]))),
                                    // Icon(iconOfFunction[index],size: 80,),
+                                   SizedBox(height: 10,),
 // Spacer(),
                                    Text(nameOfFunction[index],textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
 

@@ -8,8 +8,10 @@ class ModelStockCount{
   final String itemName;
   final int itemCount;
   final String shelfId;
+  final String barCode;
+  final String itemCode;
 
-  ModelStockCount({this.id,this.timeStamp,required this.itemName,required this.itemCount,required this.shelfId});
+  ModelStockCount({this.id,this.timeStamp,required this.itemName,required this.itemCount,required this.shelfId,required this.barCode,required this.itemCode});
 
   // Map<String, dynamic> toMap() {
   //   var map = <String, dynamic>{};
@@ -25,7 +27,9 @@ class ModelStockCount{
     final timeStamp = map['timeStamp'] as String;
     final itemCount = map['itemCount'] as int;
     final shelfId = map['shelfId'] as String;
-    return ModelStockCount(id: id,timeStamp: timeStamp,itemName: itemName, itemCount: itemCount, shelfId: shelfId);
+    final barCode = map['barCode'] as String;
+    final itemCode = map['itemCode'] as String;
+    return ModelStockCount(id: id,timeStamp: timeStamp,itemName: itemName, itemCount: itemCount, shelfId: shelfId,barCode:barCode,itemCode: itemCode);
     // return ModelStockCount(id: id, itemName: itemName, itemCount: itemCount);
   }
 }

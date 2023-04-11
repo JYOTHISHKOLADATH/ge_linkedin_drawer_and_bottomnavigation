@@ -29,14 +29,17 @@ import 'package:path/path.dart';
   );
 
   if (response.statusCode == 200||response.statusCode == 201) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Counted item created successfully."),
-        backgroundColor: Colors.green,
-      ),
-    );
-    print(response.body);
-    //return CountedItemsResponse.fromJson(jsonDecode(response.body));
+
+    final responseBody = jsonDecode(response.body);
+    if (responseBody['message'] == "Counteditems added successfully!") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Items created successfully!"),
+          backgroundColor: Colors.green,
+        ),
+      );
+    }
+
   } else {
     debugPrint(response.statusCode.toString());
     ScaffoldMessenger.of(context).showSnackBar(

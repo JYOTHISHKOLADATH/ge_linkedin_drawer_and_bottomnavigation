@@ -5,20 +5,26 @@ import 'package:sqflite/sqflite.dart';
 import 'model_StockCount.dart';
 
 ValueNotifier<List<ModelStockCount>> stockListNotifier = ValueNotifier([]);
+// ValueNotifier<List<ModelStockCount>> itemcountnotifier = ValueNotifier([]);
 
 late Database _db;
+List<String> itemCodes = [];
 Future<void> initializingDataBase() async {
   _db = await openDatabase('NewScanDetails.db', version: 1,
       onCreate: (Database db, int version) async {
     await db.execute(
-        'CREATE TABLE newScannedItems (id INTEGER PRIMARY KEY, timeStamp TEXT, itemName TEXT, itemCount INTEGER,shelfId TEXT)');
+        'CREATE TABLE newScannedItems (id INTEGER PRIMARY KEY, timeStamp TEXT, itemName TEXT, itemCount INTEGER,shelfId TEXT,barCode TEXT,itemCode TEXT)');
   });
+  // Retrieve a list of itemCode values from the newScannedItems table
+  List<Map<String, dynamic>> rows = await _db.query('newScannedItems', columns: ['itemCode']);
+  itemCodes = rows.map((row) => row['itemCode'] as String).toList();
+  print('itemCode values: $itemCodes');
 }
 
 Future<void> addItem(ModelStockCount value) async {
   await _db.rawQuery(
-      'INSERT INTO NewScannedItems (timeStamp,itemName,itemCount,shelfId) VALUES (?,?,?,?)',
-      [value.timeStamp, value.itemName, value.itemCount, value.shelfId]);
+      'INSERT INTO NewScannedItems (timeStamp,itemName,itemCount,shelfId,barCode,itemCode) VALUES (?,?,?,?,?,?)',
+      [value.timeStamp, value.itemName, value.itemCount, value.shelfId,value.barCode,value.itemCode]);
   getAllItems(value.shelfId);
 }
 
@@ -26,13 +32,28 @@ Future<void> getAllItems(shelfId) async {
   final _values = await _db.rawQuery(
       "Select * FROM NewScannedItems WHERE shelfId = '$shelfId' ORDER BY timeStamp DESC");
   print(_values);
+  final stockList = <ModelStockCount>[];
   stockListNotifier.value.clear();
   _values.forEach((map) {
     final stock = ModelStockCount.fromMap(map);
     stockListNotifier.value.add(stock);
     stockListNotifier.notifyListeners();
   });
+  print(stockList); // prints the list of stock items
 }
+
+// Future<void> getAllItemCode(shelfId) async {
+//   final _values = await _db.rawQuery(
+//       "Select itemCode FROM NewScannedItems WHERE shelfId = '$shelfId' ORDER BY timeStamp DESC");
+//   print(_values);
+//   // final stockList = <ModelStockCount>[];
+//   itemcountnotifier.value.clear();
+//   _values.forEach((map) {
+//     final stock = ModelStockCount.fromMap(map);
+//     itemcountnotifier.notifyListeners();
+//   });
+//   // print(stockList); // prints the list of stock items
+// }
 
 Future<void> deleteScannedItem(String itemName, String shelfId) async {
   await _db.delete(
@@ -53,6 +74,7 @@ Future<void> updateStockCountAdd(
   );
   getAllItems(shelfId);
 }
+
 
 Future<void> updateStockCountSub(BuildContext context, String timeStamp,
     String itemName, int itemCount, String shelfId) async {
@@ -103,6 +125,12 @@ Future<void> updateStockCountSub(BuildContext context, String timeStamp,
 Future<int?> stockExists(itemName, shelfId) async {
   var count = Sqflite.firstIntValue(await _db.rawQuery(
     'SELECT EXISTS(SELECT * FROM NewScannedItems WHERE itemName="$itemName" AND shelfId="$shelfId")',
+  ));
+  return count;
+}
+Future<int?> shelfExist(itemName, shelfId) async {
+  var count = Sqflite.firstIntValue(await _db.rawQuery(
+    'SELECT EXISTS(SELECT * FROM NewScannedItems WHERE  shelfId="$shelfId")',
   ));
   return count;
 }
@@ -234,7 +262,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          SortinList(shelfID)));
+                                                          SortinList(shelfID.toString())));
                                             },
                                             child: Text("Yes"),
                                           ),
