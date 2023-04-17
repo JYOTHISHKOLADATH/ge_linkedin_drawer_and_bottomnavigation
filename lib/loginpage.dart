@@ -6,6 +6,7 @@ import 'package:ge_bottomnavbar_drawer/newapiservices.dart';
 import 'package:ge_bottomnavbar_drawer/otp_page.dart';
 import 'package:ge_bottomnavbar_drawer/screen.dart';
 import 'package:ge_bottomnavbar_drawer/splash_screen_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'loginapimodel.dart';
@@ -18,7 +19,7 @@ class Secondlogin extends StatefulWidget {
 }
 
 class _SecondloginState extends State<Secondlogin> {
-  bool futureVisible=false;
+  bool futureVisible = false;
   bool loginApiRun = false;
   TextEditingController _useremail = new TextEditingController();
   TextEditingController _userpassword = new TextEditingController();
@@ -31,8 +32,7 @@ class _SecondloginState extends State<Secondlogin> {
   String Password = '';
   bool isPasswordvisible = true;
   // List<ApiModel> listMessage=[];
-  UserApiServices client= UserApiServices();
-
+  UserApiServices client = UserApiServices();
 
   // late Future<ModalLoginStatus> futurealbum;
   // late  Future<ApiModel> albamfuture ;
@@ -41,58 +41,76 @@ class _SecondloginState extends State<Secondlogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xffE8F9FF),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("image/WhatsApp Image 2023-03-30 at 10.14.39 AM.jpeg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: Container(
-            // color: Color(0xff2F4247),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    color: Colors.black.withOpacity(0.4), // set opacity to 0.5
-                  ),
-                  child: Padding(
+      backgroundColor: Color(0xffFFFFFF),
+      body: SingleChildScrollView(
+        child: Container(
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //     image: AssetImage("image/WhatsApp Image 2023-03-30 at 10.14.39 AM.jpeg"),
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
+          child: Center(
+            child: Container(
+              // color: Color(0xff2F4247),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 180,),
+                  Padding(
                     padding: const EdgeInsets.all(22.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         // Spacer(),
+                        // Container(
+                        //   height: 100,
+                        //     child: Image(image: AssetImage("image/logo.jpg"))),
+                        RichText(
+                          textAlign: TextAlign.left,
+                          text: TextSpan(
+                            text: 'GE ',
+                            style: GoogleFonts.glory(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 45,
+                                color: Color(0xff191B26)),
+                            children: [
+                              TextSpan(
+                                  text: 'STOCKCOUNT',
+                                style: GoogleFonts.glory(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 45,
+                                    color: Color(0xff191B26)),)
+                            ]
+                          ),
+                        ),
+                        SizedBox(height: 100,),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Center(
                               child: RichText(
                                 textAlign: TextAlign.left,
                                 text: TextSpan(
-                                    text: 'Login ',
-                                    style: TextStyle(
-                                        fontSize: 24, fontWeight: FontWeight.bold,color: Colors.white),
-                                    // children: [
-                                    //   TextSpan(
-                                    //       text: 'STOCKCOUNT',
-                                    //       style: TextStyle(color: Colors.yellow.shade200))
-                                    // ]
+                                  text: 'Login ',
+                                  style: GoogleFonts.glory(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 35,
+                                      color: Color(0xff191B26)),
+                                  // children: [
+                                  //   TextSpan(
+                                  //       text: 'STOCKCOUNT',
+                                  //       style: TextStyle(color: Colors.yellow.shade200))
+                                  // ]
                                 ),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         Form(
                             key: validationkey,
@@ -106,13 +124,13 @@ class _SecondloginState extends State<Secondlogin> {
                                       style: TextStyle(color: Colors.black),
                                       controller: _useremail,
                                       decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(15),
-                                          borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffA7ADA8)),
                                         ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(15),
-                                          borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Color(0xffA7ADA8)),
                                         ),
                                         suffixIcon: Visibility(
                                             visible: vis,
@@ -121,9 +139,12 @@ class _SecondloginState extends State<Secondlogin> {
                                               color: Colors.red,
                                             )),
                                         border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(30)),
-                                        hintText: 'Email Adress',
-                                        hintStyle: TextStyle(color: Colors.black),
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        hintText: 'User Id',
+                                        hintStyle: GoogleFonts.glory(
+                                            // fontWeight: FontWeight.bold,
+                                            color: Color(0xff191B26)),
                                       ),
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
@@ -157,7 +178,7 @@ class _SecondloginState extends State<Secondlogin> {
                                     child: Visibility(
                                         visible: mailerror,
                                         child: Text(
-                                          'Enter a valid e- mail',
+                                          'Enter a valid UserId',
                                           style: TextStyle(color: Colors.red),
                                         ))),
                                 SizedBox(
@@ -171,27 +192,34 @@ class _SecondloginState extends State<Secondlogin> {
                                       controller: _userpassword,
                                       style: TextStyle(color: Colors.black),
                                       decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(15),
-                                            borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color(0xffA7ADA8)),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(15),
-                                            borderSide: BorderSide(color: Color(0xffE8F9FF),),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color(0xffA7ADA8)),
                                           ),
                                           border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(15),
-                                            borderSide: BorderSide(color: Colors.yellow), // set border color here
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            borderSide: BorderSide(
+                                                color: Colors
+                                                    .yellow), // set border color here
                                           ),
                                           hintText: 'Password',
-                                          hintStyle: TextStyle(color: Colors.black),
+                                          hintStyle:
+                                          GoogleFonts.glory(
+                                              // fontWeight: FontWeight.bold,
+                                              color: Color(0xff191B26)),
                                           suffixIcon: IconButton(
                                             icon: isPasswordvisible
-                                                ? Icon(Icons.visibility_off)
-                                                : Icon(Icons.visibility),
+                                                ? Icon(Icons.visibility_off,color: Colors.grey,)
+                                                : Icon(Icons.visibility,color: Colors.grey,),
                                             onPressed: () {
                                               setState(() {
-                                                isPasswordvisible = !isPasswordvisible;
+                                                isPasswordvisible =
+                                                    !isPasswordvisible;
                                               });
                                             },
                                           )),
@@ -224,10 +252,10 @@ class _SecondloginState extends State<Secondlogin> {
                             )),
                         SizedBox(height: 30),
                         SizedBox(
-                          height: 15,
+                          height: 35,
                         ),
                         Container(
-                          width: 250,
+                          width: double.maxFinite,
                           height: 45,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -237,18 +265,20 @@ class _SecondloginState extends State<Secondlogin> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Mainpage(useremail: _useremail.text),
+                                        builder: (context) =>
+                                            Mainpage(useremail: _useremail.text),
                                       ));
-                        // var   data =       UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
-                      // someFunction();
-                      // print(apiModel);
-
+                                  // var   data =       UserApiServices().validationOfUser(_useremail.text, _userpassword.text);
+                                  // someFunction();
+                                  // print(apiModel);
                                 }
                               }
                             },
-                            child: Text('Login',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            child: Text(
+                              'Login',
+                              style: GoogleFonts.glory(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
                             // style: ElevatedButton.styleFrom(
                             //   backgroundColor: Colors.white,
                             //   foregroundColor: Colors.black,
@@ -256,7 +286,7 @@ class _SecondloginState extends State<Secondlogin> {
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
-                                backgroundColor: Colors.deepPurple,
+                                backgroundColor: Color(0xff191B26),
                                 foregroundColor: Colors.white),
                           ),
                         ),
@@ -300,9 +330,9 @@ class _SecondloginState extends State<Secondlogin> {
                         //    return CircularProgressIndicator();
                         //   }),
                         // ),
-                        SizedBox(
-                          height: 50,
-                        ),
+                        // SizedBox(
+                        //   height: 50,
+                        // ),
                         // Spacer(),
                         // SizedBox(height: 30,),
                         // InkWell(
@@ -323,8 +353,8 @@ class _SecondloginState extends State<Secondlogin> {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -341,9 +371,10 @@ class _SecondloginState extends State<Secondlogin> {
     UserApiServices userApiServices = UserApiServices();
     ApiModel apiModel; // Declare the variable here
     try {
-      ApiModel apiModel = await userApiServices.validationOfUser(_useremail.text,_userpassword.text);
+      ApiModel apiModel = await userApiServices.validationOfUser(
+          _useremail.text, _userpassword.text);
       // Use the returned value of apiModel here
-      if(apiModel.message== "${_useremail.text} is Already Logged In!"){
+      if (apiModel.message == "${_useremail.text} is Already Logged In!") {
         saveLogincrd();
         var sharedPref = await SharedPreferences.getInstance();
         sharedPref.setBool(SplashscreenState.KEYLOGIN, true);
@@ -352,11 +383,11 @@ class _SecondloginState extends State<Secondlogin> {
             MaterialPageRoute(
               builder: (context) => Mainpage(useremail: _useremail.text),
             ));
-      }else{
+      } else {
         showDialog(
             context: context,
             builder: (BuildContext context) {
-             return AlertDialog(
+              return AlertDialog(
                 title: Text('Invalid UserID/Password  '),
                 actions: <Widget>[
                   TextButton(
@@ -367,7 +398,7 @@ class _SecondloginState extends State<Secondlogin> {
                   ),
                 ],
               );
-              });
+            });
       }
       print(apiModel.message);
     } catch (e) {

@@ -65,7 +65,7 @@ class _SortinListState extends State<SortinList> {
     // }
 
     return Scaffold(
-      backgroundColor: Color(0xffE8F9FF),
+      backgroundColor: Color(0xffFFFFFF),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           showDialog(

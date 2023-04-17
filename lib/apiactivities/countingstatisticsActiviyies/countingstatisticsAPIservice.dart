@@ -14,7 +14,7 @@ Future<List<String>> fetchItems(String id) async {
   if (response.statusCode == 200) {
     List<dynamic> data = jsonDecode(response.body);
     // List<Item> items = data.map((json) => Item.fromJson(json)).toList();
-    List<String> items = data.map((json) => Item.fromJson(json).itemcode).toList();
+    List<String> items = data.map((json) => Item.fromJson(json).barcode ?? "").toList();
    print(items);
     return items;
   } else {

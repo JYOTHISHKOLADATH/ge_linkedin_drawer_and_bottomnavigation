@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/sorting_listPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'model_StockCount.dart';
@@ -15,6 +16,9 @@ Future<void> initializingDataBase() async {
     await db.execute(
         'CREATE TABLE newScannedItems (id INTEGER PRIMARY KEY, timeStamp TEXT, itemName TEXT, itemCount INTEGER,shelfId TEXT,barCode TEXT,itemCode TEXT)');
   });
+
+}
+Future getItemcodeList()async{
   // Retrieve a list of itemCode values from the newScannedItems table
   List<Map<String, dynamic>> rows = await _db.query('newScannedItems', columns: ['itemCode']);
   itemCodes = rows.map((row) => row['itemCode'] as String).toList();
@@ -90,22 +94,66 @@ Future<void> updateStockCountSub(BuildContext context, String timeStamp,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Do you want to remove these item?'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('No'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          title: Text('Confirmation',style: GoogleFonts.glory(
+              fontSize: 18,fontWeight: FontWeight.bold),),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Are you sure you want to Delete these item?',style: GoogleFonts.glory(
+                    fontSize: 18),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            Color(0xff191B26)),
+                        shape:
+                        MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                        ),
+
+                      ),
+                      child: Text('Yes',style: GoogleFonts.glory(
+                          fontSize: 18,fontWeight: FontWeight.bold),),
+                      onPressed: () {
+                        deleteScannedItem(itemName, shelfId);
+                        Navigator.of(context).pop(true);
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            Color(0xffffffff)),
+                        shape:
+                        MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                        ),
+                        side: MaterialStateProperty.all<BorderSide>(
+                          BorderSide(
+                            color: Colors.black, // Set border color here
+                            width: 2.0, // Set border width here
+                          ),
+                        ),
+                      ),
+                      child: Text('No',style: GoogleFonts.glory(
+                          fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),),
+                      onPressed: () {
+                        // Perform some action
+                        Navigator.of(context).pop(false);
+                      },
+                    ),
+                  ],
+                )
+              ],
             ),
-            TextButton(
-              child: Text('Yes'),
-              onPressed: () {
-                deleteScannedItem(itemName, shelfId);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+          ),
         );
       },
     );
@@ -199,7 +247,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
           print(textFieldValue.text);
           return AlertDialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(0.0),
             ),
             title: Container(
                 alignment: Alignment.topRight,
@@ -212,7 +260,9 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text("Quantity",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)],
+
+                      children: [Text("Quantity",style: GoogleFonts.glory(
+                          fontWeight: FontWeight.bold,fontSize: 18),)],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -226,47 +276,61 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: Text(
-                                            'Do you want to remove these item?'),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor: MaterialStatePropertyAll<Color>(
-                                                  Colors.deepPurple),
-                                              shape:
-                                              MaterialStatePropertyAll<RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(10.0),
+                                            'Do you want to remove these item?',style: GoogleFonts.glory(
+                                            fontWeight: FontWeight.bold,fontSize: 18),),
+                                        content: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            ElevatedButton(
+                                              style: ButtonStyle(
+                                                backgroundColor: MaterialStatePropertyAll<Color>(
+                                                    Colors.black),
+                                                shape:
+                                                MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(0.0),
+                                                  ),
                                                 ),
                                               ),
+                                              onPressed: () {
+                                                deleteScannedItem(
+                                                    itemName, shelfID);
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SortinList(shelfID.toString())));
+                                              },
+                                              child: Text("Yes",style: GoogleFonts.glory(
+                                                  fontWeight: FontWeight.bold,fontSize: 18)),
                                             ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("No"),
-                                          ),
-                                          ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor: MaterialStatePropertyAll<Color>(
-                                                  Colors.deepPurple),
-                                              shape:
-                                              MaterialStatePropertyAll<RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(10.0),
+                                            ElevatedButton(
+                                              style: ButtonStyle(
+                                                backgroundColor: MaterialStatePropertyAll<Color>(
+                                                    Colors.white),
+                                                shape:
+                                                MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(0.0),
+                                                  ),
+                                                ),
+                                                side: MaterialStateProperty.all<BorderSide>(
+                                                  BorderSide(
+                                                    color: Colors.black, // Set border color here
+                                                    width: 2.0, // Set border width here
+                                                  ),
                                                 ),
                                               ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("No",style: GoogleFonts.glory(
+                                                  fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black)),
                                             ),
-                                            onPressed: () {
-                                              deleteScannedItem(
-                                                  itemName, shelfID);
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          SortinList(shelfID.toString())));
-                                            },
-                                            child: Text("Yes"),
-                                          ),
-                                        ],
+
+                                          ],
+                                        ),
+
                                       );
                                     },
                                   )
@@ -310,7 +374,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                               itemCount = itemCount + 1;
                             });
                           },
-                            icon: Icon(Icons.add_circle,color: Colors.green,size: 40,)),
+                            icon: Icon(Icons.add_circle,color: Colors.grey,size: 40,)),
                       ],
                     ),
                     SizedBox(height: 40,),
@@ -319,11 +383,11 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                         child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.deepPurple),
+                              MaterialStatePropertyAll<Color>(Colors.black),
                               shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.deepPurple, width: 2.0),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                  side: BorderSide(color: Colors.black, width: 2.0),
                                 ),
                               ),
                             ),

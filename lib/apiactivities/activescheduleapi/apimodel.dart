@@ -4,7 +4,7 @@ class ScheduleApiModel{
   String schedulename;
   // String startdate;
   // String enddate;
-  // int countingstatus;
+  int countingstatus;
   // int role_id;
   // int branch_id;
   // int cmp_id;
@@ -21,7 +21,7 @@ class ScheduleApiModel{
     required this.schedulename,
     // required this.startdate,
     // required this.enddate,
-    // required this.countingstatus,
+    required this.countingstatus,
     // required this.role_id,
     // required this.branch_id,
     // required this.cmp_id,
@@ -38,10 +38,10 @@ class ScheduleApiModel{
   factory ScheduleApiModel.fromJson(Map<String, dynamic> json) {
     return ScheduleApiModel(
         schedule_id: json ["schedule_id"],
-        schedulename: json["schedulename"],
+        schedulename: json["schedulename"] ?? "Not provided",
         // startdate: json["startdate"],
         // enddate: json["enddate"],
-        // countingstatus: json["countingstatus"],
+        countingstatus: json["countingstatus"],
         // role_id: json["role_id"],
         // branch_id: json["branch_id"],
         // cmp_id: json["cmp_id"],
@@ -49,9 +49,9 @@ class ScheduleApiModel{
         // created_by: json["created_by"],
         // modified_at: json["modified_at"],
         // modified_by: json["modified_by"],
-        status: json["status"],
-        branch_name: json["branch_name"],
-        cmp_name: json["cmp_name"]
+        status: json["status"] ?? "Not provided",
+        branch_name: json["branch_name"] ?? "Not provided",
+        cmp_name: json["cmp_name"] ?? "Not provided"
     );
   }
 }

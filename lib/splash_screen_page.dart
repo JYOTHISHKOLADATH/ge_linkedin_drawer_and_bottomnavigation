@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ge_bottomnavbar_drawer/forgot_password_page.dart';
 import 'package:ge_bottomnavbar_drawer/loginpage.dart';
 import 'package:ge_bottomnavbar_drawer/screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -26,25 +27,27 @@ class SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE8F9FF),
+      backgroundColor: Color(0xffFFFFFF),
       body: Center(
         child: Container(
-            child: RichText(
-          text: TextSpan(
-              text: 'GE ',
-              style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
-              children: [
-                TextSpan(
-                    text: 'STOCKCOUNT',
-                    style: TextStyle(
-                        color: Colors.indigo,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30))
-              ]),
-        )),
+            child:  RichText(
+              textAlign: TextAlign.left,
+              text: TextSpan(
+                  text: 'GE ',
+                  style: GoogleFonts.glory(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 45,
+                      color: Color(0xff191B26)),
+                  children: [
+                    TextSpan(
+                      text: 'STOCKCOUNT',
+                      style: GoogleFonts.glory(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 45,
+                          color: Color(0xff191B26)),)
+                  ]
+              ),
+            ),),
       ),
     );
   }

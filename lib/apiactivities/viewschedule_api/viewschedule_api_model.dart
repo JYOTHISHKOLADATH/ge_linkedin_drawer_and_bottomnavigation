@@ -42,23 +42,23 @@ class ViewScheduleApiModel{
 
   factory ViewScheduleApiModel.fromJson(Map<String, dynamic> json) {
     return ViewScheduleApiModel(
-        schedulename: json["schedulename"],
-        schedule_id: json["schedule_id"],
-        startdate: json["startdate"],
-        enddate: json["enddate"],
-        countingstatus: json["countingstatus"],
-        status: json["status"],
-        role_id: json["role_id"],
-        rolename: json["rolename"],
-        branch_name: json["branch_name"],
-        cmp_name: json["cmp_name"],
-        branch_id: json["branch_id"],
-        cmp_id: json["cmp_id"],
-        modified_by: json["modified_by"],
-        modified_at: json["modified_at"],
-        created_by: json["created_by"],
-        created_at: json["created_at"],
-        createdbyname: json["createdbyname"],
-        updatedbyname: json["updatedbyname"]);
+        schedulename: json["schedulename"] ?? "Not provided",
+        schedule_id: json["schedule_id"]  ?? 0,
+        startdate: json["startdate"] ?? "Not provided",
+        enddate: json["enddate"] ?? "Not provided",
+        countingstatus: json["countingstatus"] ?? 0,
+        status: json["status"] ?? 0,
+        role_id: json["role_id"] ?? 0,
+        rolename: json["rolename"] ?? "Not provided",
+        branch_name: json["branch_name"] ?? "Not provided",
+        cmp_name: json["cmp_name"] ?? "Not provided",
+        branch_id: json["branch_id"] ?? 0,
+        cmp_id: json["cmp_id"] ?? 0,
+        modified_by: json["modified_by"] ?? 0,
+        modified_at: json["modified_at"] ?? "Not provided",
+        created_by: json["created_by"] ?? 0,
+        created_at: json["created_at"] ?? "Not provided",
+        createdbyname: json["createdbyname"] ?? "Not provided",
+        updatedbyname: json["updatedbyname"] ?? "Not provided");
   }
 }

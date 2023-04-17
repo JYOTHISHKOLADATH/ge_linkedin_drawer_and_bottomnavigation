@@ -141,6 +141,20 @@ class _ListStockState extends State<ListStock> {
                           child: Text("Sync"))
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      children: [
+                      Icon(Icons.arrow_drop_down_circle_outlined,size: 20,),
+              Text(
+              "Shelf(${widget.shelfId})",
+              style: GoogleFonts.glory(
+              color: Color(0xff666666),fontSize: 20,fontWeight: FontWeight.bold),
+              ),
+              ],
+              ),
+                  ),
+                  SizedBox(height: 20,),
                   if (stockList.length == 0)
                     Center(
                         child: Column(
@@ -158,6 +172,7 @@ class _ListStockState extends State<ListStock> {
                       ) else Expanded(
                         child: ListView.separated(
                     // reverse: true,
+                          padding: EdgeInsets.zero,
                         itemBuilder: (context, index) {
                           final now = DateTime.now();
                           final data = stockList[index];
@@ -588,31 +603,67 @@ class _ListStockState extends State<ListStock> {
       barrierDismissible: false, // user must tap button for close
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Confirmation'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Are you sure you want to Add these item?'),
+          title: Text('Confirmation',style: GoogleFonts.glory(
+              fontSize: 18,fontWeight: FontWeight.bold),),
+          content: Container(
+            height: 100,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Are you sure you want to Add these item?',style: GoogleFonts.glory(
+                    fontSize: 18),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            Color(0xff191B26)),
+                        shape:
+                        MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                        ),
+
+                      ),
+                      child: Text('Yes',style: GoogleFonts.glory(
+                          fontSize: 18,fontWeight: FontWeight.bold),),
+                      onPressed: () {
+                        newitemlist.add(itemcode);
+                        addItem(databaseadd);
+                        Navigator.of(context).pop(true);
+                      },
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            Color(0xffffffff)),
+                        shape:
+                        MaterialStatePropertyAll<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                        ),
+                        side: MaterialStateProperty.all<BorderSide>(
+                          BorderSide(
+                            color: Colors.black, // Set border color here
+                            width: 2.0, // Set border width here
+                          ),
+                        ),
+                      ),
+                      child: Text('No',style: GoogleFonts.glory(
+                          fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),),
+                      onPressed: () {
+                        // Perform some action
+                        Navigator.of(context).pop(false);
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Yes'),
-              onPressed: () {
-                newitemlist.add(itemcode);
-                addItem(databaseadd);
-                Navigator.of(context).pop(true);
-              },
-            ),
-            TextButton(
-              child: Text('No'),
-              onPressed: () {
-                // Perform some action
-                Navigator.of(context).pop(false);
-              },
-            ),
-          ],
         );
       },
     );

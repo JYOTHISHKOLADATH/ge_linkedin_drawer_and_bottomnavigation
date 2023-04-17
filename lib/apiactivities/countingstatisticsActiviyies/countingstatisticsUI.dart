@@ -45,7 +45,7 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   void initState() {
     super.initState();
-    initializingDataBase();
+    getItemcodeList();
     fetchItems(widget.id.toString()).then((fetchedItems) {
       setState(() {
         items = fetchedItems;
@@ -88,7 +88,7 @@ class _MyWidgetState extends State<MyWidget> {
               valueListenable: stockListNotifier,
               builder: (BuildContext context, stockList,
                   Widget? child) {
-                function(stockList);
+                function();
                 print("these is stock list $stockList");
                 return Container();
               }),
@@ -109,7 +109,7 @@ class _MyWidgetState extends State<MyWidget> {
                           topRight: Radius.circular(30),
                           bottomRight: Radius.circular(30),
                         ),
-                        color: Colors.indigo,
+                        color: Colors.black,
                       ),
                       child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -175,7 +175,7 @@ class _MyWidgetState extends State<MyWidget> {
     );
   }
   // 7C5219917K
-  function(stockList){
+  function(){
     similarItemsList.clear();
     differentItemsList.clear();
     for (String itemCode in itemCodes) {
