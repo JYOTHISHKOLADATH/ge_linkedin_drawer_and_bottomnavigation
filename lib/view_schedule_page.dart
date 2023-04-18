@@ -208,7 +208,8 @@ class _ViewScheduleState extends State<ViewSchedule> {
                           children: [
                             Container(
                               width: 5,
-                              height: 230,
+                              height: MediaQuery.of(context).size.height *
+                                  .3,
                               decoration: BoxDecoration(
                                 color: Color(0xffFFB300),
                                 borderRadius: BorderRadius.only(
@@ -392,7 +393,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Expanded(
+                                        Flexible(
                                             flex: 3,
                                             child: Container(
                                               constraints: BoxConstraints(maxWidth: 200),
@@ -401,7 +402,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                                   Icon(Icons.run_circle),
                                                   SizedBox(width: 10,),
                                                   SizedBox(
-                                                    width: 100,
+                                                    // width: 100,
                                                     child: Text(
                                                       'COUNTING STATUS',
                                                         maxLines: null,
@@ -454,11 +455,6 @@ class _ViewScheduleState extends State<ViewSchedule> {
                 }),
             SizedBox(height: 50,),
             Icon(Icons.qr_code_scanner_sharp),
-            // Visibility(
-            //     child: Text(
-            //   "PLEASE SCAN A SHELF",
-            //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            // )),
             SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.only(left: 28.0,right: 28),
@@ -584,6 +580,9 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                 builder: (BuildContext context) {
                                   return
                                     AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                       // contentPadding: EdgeInsets.symmetric(vertical: 118.0, horizontal: 12.0),
                                     title: Text('Enter a valid Shelf ID',style: GoogleFonts.glory(
                                         fontSize: 28,fontWeight: FontWeight.bold),),
@@ -601,7 +600,7 @@ class _ViewScheduleState extends State<ViewSchedule> {
                                                 shape:
                                                 MaterialStatePropertyAll<RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(0.0),
+                                                    borderRadius: BorderRadius.circular(8.0),
                                                   ),
                                                 ),
                                               ),

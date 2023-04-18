@@ -193,7 +193,8 @@ class _ListStockState extends State<ListStock> {
                                   children: [
                                     Container(
                                       width: 5,
-                                      height: 110,
+                                      height: MediaQuery.of(context).size.height *
+                                          .15,
                                       decoration: BoxDecoration(
                                         color: Color(0xffFFB300),
                                         borderRadius: BorderRadius.only(

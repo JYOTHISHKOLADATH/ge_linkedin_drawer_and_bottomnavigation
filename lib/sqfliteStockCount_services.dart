@@ -113,7 +113,7 @@ Future<void> updateStockCountSub(BuildContext context, String timeStamp,
                         shape:
                         MaterialStatePropertyAll<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
 
@@ -132,7 +132,7 @@ Future<void> updateStockCountSub(BuildContext context, String timeStamp,
                         shape:
                         MaterialStatePropertyAll<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
                         side: MaterialStateProperty.all<BorderSide>(
@@ -247,7 +247,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
           print(textFieldValue.text);
           return AlertDialog(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0.0),
+              borderRadius: BorderRadius.circular(8),
             ),
             title: Container(
                 alignment: Alignment.topRight,
@@ -288,7 +288,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                                                 shape:
                                                 MaterialStatePropertyAll<RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(0.0),
+                                                    borderRadius: BorderRadius.circular(10.0),
                                                   ),
                                                 ),
                                               ),
@@ -311,7 +311,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                                                 shape:
                                                 MaterialStatePropertyAll<RoundedRectangleBorder>(
                                                   RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(0.0),
+                                                    borderRadius: BorderRadius.circular(10.0),
                                                   ),
                                                 ),
                                                 side: MaterialStateProperty.all<BorderSide>(
@@ -374,7 +374,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                               itemCount = itemCount + 1;
                             });
                           },
-                            icon: Icon(Icons.add_circle,color: Colors.grey,size: 40,)),
+                            icon: Icon(Icons.add_circle,color: Colors.green,size: 40,)),
                       ],
                     ),
                     SizedBox(height: 40,),
@@ -386,7 +386,7 @@ Future<void> updateStockCountEasy(BuildContext context, String timeStamp,
                               MaterialStatePropertyAll<Color>(Colors.black),
                               shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.black, width: 2.0),
                                 ),
                               ),

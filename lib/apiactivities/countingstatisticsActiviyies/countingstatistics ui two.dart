@@ -43,6 +43,13 @@ class _CoutingstatTwoState extends State<CoutingstatTwo> {
                   // SizedBox(width: 20,)
                 ],
               )),
+          Expanded(
+            child: Lottie.network(
+              'https://assets7.lottiefiles.com/private_files/lf30_f0fhps6k.json',
+              // width: 200,
+              // height: 400,
+            ),
+          ),
           GridView.builder(
             shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -64,23 +71,17 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(height: 5,),
                     Text(count[index].toString(),style: GoogleFonts.glory(
-                  fontSize: 60,fontWeight: FontWeight.bold),),
+                  fontSize: MediaQuery.of(context).size.width * 0.2,fontWeight: FontWeight.bold),),
                     Text(role[index].toString(),style: GoogleFonts.glory(
-                        fontSize: 30,fontWeight: FontWeight.bold),),
+                        fontSize: MediaQuery.of(context).size.width * 0.07,fontWeight: FontWeight.bold),),
                   ],
                 ) ,
               ),
             );
           })),
-          Expanded(
-            child: Lottie.network(
-              'https://assets7.lottiefiles.com/private_files/lf30_f0fhps6k.json',
-              // width: 200,
-              // height: 400,
-            ),
-          ),
 
-          // SizedBox(height: 80,)
+
+          SizedBox(height: 30,)
         ],
       ),
     );

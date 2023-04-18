@@ -35,6 +35,28 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SafeArea(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+
+                  children: [
+                    InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    Text("Schedules",style: GoogleFonts.glory(
+                        fontWeight: FontWeight.bold,fontSize: 18),),
+                  ],
+                )),
             FutureBuilder(
                 future: _futureSchedule.showingSchedule(),
                 builder: (context, snapshot) {
@@ -46,28 +68,28 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SafeArea(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-
-                                children: [
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.pop(context);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 20,),
-                                  Text("Schedules",style: GoogleFonts.glory(
-                                      fontWeight: FontWeight.bold,fontSize: 18),),
-                                ],
-                              )),
+                          // SafeArea(
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.start,
+                          //
+                          //       children: [
+                          //         InkWell(
+                          //           onTap: (){
+                          //             Navigator.pop(context);
+                          //           },
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.only(left: 8.0),
+                          //             child: Icon(
+                          //               Icons.arrow_back,
+                          //               color: Colors.black,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //         SizedBox(width: 20,),
+                          //         Text("Schedules",style: GoogleFonts.glory(
+                          //             fontWeight: FontWeight.bold,fontSize: 18),),
+                          //       ],
+                          //     )),
 
                           Lottie.network(
                             'https://assets7.lottiefiles.com/packages/lf20_v25de198.json',
@@ -88,28 +110,28 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                      SafeArea(
-                      child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-
-                        children: [
-                          InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Icon(
-                                Icons.arrow_back,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20,),
-                          Text("Schedules",style: GoogleFonts.glory(
-                              fontWeight: FontWeight.bold,fontSize: 18),),
-                        ],
-                      )),
+                      // SafeArea(
+                      // child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      //
+                      //   children: [
+                      //     InkWell(
+                      //       onTap: (){
+                      //         Navigator.pop(context);
+                      //       },
+                      //       child: Padding(
+                      //         padding: const EdgeInsets.only(left: 8.0),
+                      //         child: Icon(
+                      //           Icons.arrow_back,
+                      //           color: Colors.black,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     SizedBox(width: 20,),
+                      //     Text("Schedules",style: GoogleFonts.glory(
+                      //         fontWeight: FontWeight.bold,fontSize: 18),),
+                      //   ],
+                      // )),
                           Column(
                             children: [
                               Lottie.network(
@@ -132,78 +154,7 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SafeArea(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
 
-                                children: [
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.pop(context);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 20,),
-                                  Text("Schedules",style: GoogleFonts.glory(
-                                      fontWeight: FontWeight.bold,fontSize: 18),),
-                                ],
-                              )),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(18.0),
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(15),
-                          //     child: Container(
-                          //       color: Colors.white,
-                          //       child: Row(
-                          //         children: [
-                          //           Expanded(
-                          //             flex: 3,
-                          //             child: Padding(
-                          //               padding: const EdgeInsets.all(8.0),
-                          //               child: Column(
-                          //                 crossAxisAlignment:
-                          //                     CrossAxisAlignment.start,
-                          //                 children: [
-                          //                   // Text(
-                          //                   //   "Branch (${snapshot.data![0].branch_id.toString()})",
-                          //                   //   style: TextStyle(
-                          //                   //       fontWeight: FontWeight.bold,
-                          //                   //       fontSize: 30),
-                          //                   // ),
-                          //                   Text(
-                          //                     snapshot.data![0].cmp_name,
-                          //                     style: TextStyle(
-                          //                         fontWeight: FontWeight.bold,
-                          //                         fontSize: 22),
-                          //                   ),
-                          //                   Text(
-                          //                     snapshot.data![0].branch_name,
-                          //                     style: TextStyle(
-                          //                         fontWeight: FontWeight.bold),
-                          //                   )
-                          //                 ],
-                          //               ),
-                          //             ),
-                          //           ),
-                          //           Expanded(
-                          //               flex: 2,
-                          //               child: ClipRRect(
-                          //                 borderRadius: BorderRadius.circular(15),
-                          //                 child: Image(
-                          //                     image: NetworkImage(
-                          //                         "https://pr0.nicelocal.ae/o3fbTpnWT5dXEZfcfm0O8Q/1500x1500,q75/4px-BW84_n0QJGVPszge3NRBsKw-2VcOifrJIjPYFYkOtaCZxxXQ2Wy6OOtl3bYu10IRAjQffzpCyffW8uoxRD6tsSFV1gHJMODXUtR4HWYCvS3ID_8lug")),
-                          //               ))
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           SizedBox(height: 10,),
                           Row(
                             children: [
@@ -218,7 +169,7 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                           SizedBox(height: 20,),
                           Container(
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0,right: 20,bottom: 30),
+                              padding: const EdgeInsets.only(left: 8.0,right: 8,bottom: 30),
                               child: ListView.builder(
                                 padding: EdgeInsets.only(top: 10),
                                   shrinkWrap: true,
@@ -249,8 +200,10 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                                             child: Row(
                                               children: [
                                                 Container(
+                                                  // child: Expanded(child: Column()),
                                                   width: 5,
-                                                  height: 130,
+                                                  height: MediaQuery.of(context).size.height *
+                                                      .15,
                                                   decoration: BoxDecoration(
                                                     color: Color(0xffFFB300),
                                                     borderRadius: BorderRadius.only(
@@ -266,26 +219,40 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                                                   child: Column(
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      SizedBox(height: 30,),
-                                                      Text(snapshot.data![index].schedulename,style: GoogleFonts.glory(
-                                                          fontWeight: FontWeight.bold,fontSize: 20),),
-                                                    SizedBox(height: 5,),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 8.0),
+                                                        child: Row(
+                                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children: [
+                                                            snapshot.data![index].countingstatus == 1
+                                                                ? Text("Pending",style: GoogleFonts.glory(
+                                                                color: Colors.red,fontSize: 15),)
+                                                                : Text("In Progress",style: GoogleFonts.glory(
+                                                                color: Colors.orange,fontSize: 15),),
+                                                          ],
+                                                        ),
+                                                      ),
+
+                                                      Text(snapshot.data![index].schedulename.toUpperCase(),style: GoogleFonts.glory(
+                                                          fontWeight: FontWeight.bold,fontSize: MediaQuery.of(context).size.width * 0.05,),),
+                                                    SizedBox(height: 6,),
                                                     Row(
                                                       children: [
                                                         Expanded(
                                                           flex:1,
                                                           child: Text("Company",style: GoogleFonts.glory(
-                                                              color: Color(0xff666666),fontSize: 18,fontWeight: FontWeight.bold),),
+                                                              color: Color(0xff666666),fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),),
                                                         ),
                                                         Expanded(
                                                           flex: 1,
                                                           child: Text(":",style: GoogleFonts.glory(
-                                                  fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+                                                  fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
                                                         ),
                                                         Expanded(
                                                           flex: 2,
                                                           child: Text(snapshot.data![index].cmp_name.toUpperCase(),style: GoogleFonts.glory(
-                                                              color: Color(0xff666666),fontSize: 18,fontWeight: FontWeight.bold),),
+                                                              color: Color(0xff666666),fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),),
                                                         ),
                                                       ],
                                                     ),
@@ -295,17 +262,17 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                                                           Expanded(
                                                             flex:1,
                                                             child: Text("Branch",style: GoogleFonts.glory(
-                                                                color: Color(0xff666666),fontSize: 18,fontWeight: FontWeight.bold),),
+                                                                color: Color(0xff666666),fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),),
                                                           ),
                                                           Expanded(
                                                             flex: 1,
                                                             child: Text(":",style: GoogleFonts.glory(
-                                                                color: Color(0xff666666),fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+                                                                color: Color(0xff666666),fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
                                                           ),
                                                           Expanded(
                                                             flex: 2,
                                                             child: Text(snapshot.data![index].branch_name.toUpperCase(),style: GoogleFonts.glory(
-                                                                color: Color(0xff666666),fontSize: 18,fontWeight: FontWeight.bold),),
+                                                                color: Color(0xff666666),fontSize: MediaQuery.of(context).size.width * 0.04,fontWeight: FontWeight.bold),),
                                                           ),
                                                         ],
                                                       ),
@@ -313,18 +280,6 @@ class _ActiveSchedulesPageState extends State<ActiveSchedulesPage> {
                                                     ],
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                                    children: [
-                                                      snapshot.data![index].countingstatus == 1
-                                                          ? Text("Pending",style: GoogleFonts.glory(
-                                                          color: Colors.red,fontSize: 15),)
-                                                          : Text("In Progress",style: GoogleFonts.glory(
-                                                          color: Colors.orange,fontSize: 15),),
-                                                    ],
-                                                  ),
-                                                )
                                               ],
                                             ),
                                           ),

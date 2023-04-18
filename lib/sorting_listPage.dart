@@ -3,6 +3,7 @@ import 'package:ge_bottomnavbar_drawer/apiactivities/syncing%20data/syncingdata_
 import 'package:ge_bottomnavbar_drawer/liststockpage.dart';
 import 'package:ge_bottomnavbar_drawer/model_StockCount.dart';
 import 'package:ge_bottomnavbar_drawer/sqfliteStockCount_services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class SortinList extends StatefulWidget {
@@ -72,66 +73,65 @@ class _SortinListState extends State<SortinList> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
+                title: Text('Confirmation',style: GoogleFonts.glory(
+                    fontSize: 18,fontWeight: FontWeight.bold),),
                 content: Container(
-                  height: 150,
+                  height: 100,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Do you want to sync Now?",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                      SizedBox(height: 30,),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                              Colors.deepPurple),
-                          shape:
+                      Text('Do you want  to sync the Counted items Now?',style: GoogleFonts.glory(
+                          fontSize: 18),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Color(0xff191B26)),
+                              shape:
                               MaterialStatePropertyAll<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+
                             ),
+                            child: Text('Yes',style: GoogleFonts.glory(
+                                fontSize: 18,fontWeight: FontWeight.bold),),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text("Sync Now"),
-                      ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                              Colors.white),
-                          shape:
-                          MaterialStatePropertyAll<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.black, width: 2),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Color(0xffffffff)),
+                              shape:
+                              MaterialStatePropertyAll<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                              side: MaterialStateProperty.all<BorderSide>(
+                                BorderSide(
+                                  color: Colors.black, // Set border color here
+                                  width: 2.0, // Set border width here
+                                ),
+                              ),
                             ),
+                            child: Text('No',style: GoogleFonts.glory(
+                                fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),),
+                            onPressed: () {
+                              // Perform some action
+                              Navigator.of(context).pop();
+                            },
                           ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text("Later",style: TextStyle(color: Colors.black),),
-                      ),
+                        ],
+                      )
                     ],
                   ),
                 ),
-                // title: Text('Do you want to sync data now?'),
-                // actions: <Widget>[
-                //   TextButton(
-                //     child: Text('No'),
-                //     onPressed: () {
-                //       Navigator.of(context).pop();
-                //     },
-                //   ),
-                //   TextButton(
-                //     child: Text('Yes'),
-                //     onPressed: () {
-                //       Navigator.of(context).pop();
-                //     },
-                //   ),
-                // ],
               );
             },
           );
